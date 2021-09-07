@@ -1,15 +1,17 @@
-from UI.face import *
-from UI.admain import *
-from faceDector import *
-from UserManage import *
-from Timing import *
-from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QMessageBox
 import numpy as np
 import sys, os, face_recognition, time
 import matplotlib.pyplot as plt
+import faceDetector
+import UserManage
+import Timing
 
-dir='/home/ccyyxx/PycharmProjects/Face-Sign-In-System'
+from UI.face import *
+from UI.admain import *
+from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import QMessageBox
+
+
+dir='faceData'
 class AdmainWindow(QtWidgets.QDialog, Ui_admainDialog):
     def __init__(self):
         super(AdmainWindow, self).__init__()
@@ -17,13 +19,13 @@ class AdmainWindow(QtWidgets.QDialog, Ui_admainDialog):
 
     def takePhoto(self):
         name = self.nameEdit.text()
-        os.chdir(dir)
-        print(os.getcwd())
         if name != "":
             if not os.path.exists(dir):
                 os.mkdir(dir)
+
             faceCapture(name)
             self.imgEdit.setText(name + '.jpg')
+
         else:
             img_box = QMessageBox.information(self, "拍照", "请输入姓名")
 
@@ -88,8 +90,9 @@ def faceRecognize():
     print(os.getcwd())
     # 从数据库中获取已注册的用户脸部图片
     dbHelper = DBHelper()
-    sql = 'select * from users';
+    sql = 'select * from stuInfo';
     all_result = dbHelper.fetchall(sql, None)
+    print(all_result)
     # 将jpg文件加载到numpy数组中
     imgs = list()
     labels = list()

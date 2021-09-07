@@ -1,12 +1,9 @@
-'''
-将用户信息进行保存并上传到个人数据库内
-'''
 import pymysql
 
 
 class DBHelper:
     def __init__(self, host='127.0.0.1', user='root',
-                 pwd='', db='face'):
+                 pwd='root', db='stuDB'):
         self.host = host
         self.user = user
         self.pwd = pwd
@@ -18,9 +15,6 @@ class DBHelper:
         self.conn = pymysql.connect(host=self.host, user=self.user,
                                     password=self.pwd, db=self.db, port=8000, charset='utf8')
 
-        # except:
-        #     print("connect error...")
-        #     return False
         self.cur = self.conn.cursor()
         return True
 

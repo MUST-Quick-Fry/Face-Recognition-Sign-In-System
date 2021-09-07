@@ -1,13 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="b7f2a67e-c456-4fd4-a024-1bdb3c0340f0" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SQL_test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/Face.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Face.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserManage.py" beforeDir="false" afterPath="$PROJECT_DIR$/UserManage.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/faceDector.py" beforeDir="false" afterPath="$PROJECT_DIR$/faceDector.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/main.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/recognize.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/record.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/register.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/faceDector.py" beforeDir="false" afterPath="$PROJECT_DIR$/faceDetector.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/face_recognition" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hpl.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -164,9 +188,9 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Python.face (1)" />
       <item itemvalue="Python.face" />
       <item itemvalue="Python.main" />
-      <item itemvalue="Python.face (1)" />
       <item itemvalue="Python.script" />
     </list>
     <recent_temporary>
@@ -216,8 +240,27 @@
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
+  <component name="WindowStateProjectService">
+    <state x="719" y="322" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1631042110471">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="719" y="322" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1631042110471" />
+    <state width="1899" height="186" key="GridCell.Tab.0.bottom" timestamp="1631038384345">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="186" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1631038384345" />
+    <state width="1899" height="186" key="GridCell.Tab.0.center" timestamp="1631038384344">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="186" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1631038384344" />
+    <state width="1899" height="186" key="GridCell.Tab.0.left" timestamp="1631038384343">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="186" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1631038384343" />
+    <state width="1899" height="186" key="GridCell.Tab.0.right" timestamp="1631038384344">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="186" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1631038384344" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
