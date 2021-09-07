@@ -9,7 +9,7 @@ import numpy as np
 import sys, os, face_recognition, time
 import matplotlib.pyplot as plt
 
-dir='C:\\Users\\libra\\PycharmProjects\\Face\\face\\'
+dir='/home/ccyyxx/PycharmProjects/Face-Sign-In-System'
 class AdmainWindow(QtWidgets.QDialog, Ui_admainDialog):
     def __init__(self):
         super(AdmainWindow, self).__init__()
@@ -46,6 +46,7 @@ class AdmainWindow(QtWidgets.QDialog, Ui_admainDialog):
             else:
                 fail_box = QMessageBox.information(self, "注册", "注册失败")
                 print("插入数据失败")
+        dbHelper.fetchall()
 
 
 class Mywindow(QtWidgets.QMainWindow, Ui_MainWindow):
@@ -163,4 +164,5 @@ if __name__ == '__main__':
     app.exec_()
     # 每天零点定时更新数据库
     timerRun(0, 0)
+
     sys.exit(0)

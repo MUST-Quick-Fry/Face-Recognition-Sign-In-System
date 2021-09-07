@@ -6,9 +6,9 @@ from PIL import Image
 # 人脸识别
 def gface(image):
     # 模式参数
-    dir_path = "E:\\OpenCv\\opencv-3.3.0\\data\\haarcascades"  # openCV路径
+    dir_path = "/home/ccyyxx/opencv/data/haarcascades"  # openCV路径
     filename = "haarcascade_frontalface_default.xml"  # 识别模式文件
-    model_path = dir_path + "\\" + filename
+    model_path = dir_path + "/" + filename
     # 创建classifier
     clf = cv2.CascadeClassifier(model_path)
     # 设定灰度
