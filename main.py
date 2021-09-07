@@ -1,10 +1,9 @@
 import numpy as np
 import sys, os, face_recognition, time
 import matplotlib.pyplot as plt
-import faceDetector
-import UserManage
-import Timing
-
+from faceDetector import *
+from UserManage import *
+from Timing import *
 from UI.face import *
 from UI.admain import *
 from PyQt5.QtCore import Qt
