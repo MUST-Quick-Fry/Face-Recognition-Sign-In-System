@@ -1,6 +1,5 @@
 import cv2
 
-
 # face detection
 def getface(image):
     # import opencv haarcascade package

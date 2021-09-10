@@ -10,7 +10,7 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QMessageBox
 
 
-dir='faceData'
+dir=r'.\faceData'
 class AdmainWindow(QtWidgets.QDialog, Ui_admainDialog):
     def __init__(self):
         super(AdmainWindow, self).__init__()
