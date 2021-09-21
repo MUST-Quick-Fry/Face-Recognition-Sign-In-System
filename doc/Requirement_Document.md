@@ -6,7 +6,6 @@
   4. App maintenance will influence the sign in system.  If we use independent software, the impact will decrease.
 ### Background Info
 Face recognition is now widely used in large companies. It is a relatively mature and flexible technology which can be applied in our campus to consummate functions.
-<!-- Use case UML here!! -->
 ### Environment & System Modules
   + Face Recognition Module 
 
