@@ -2,24 +2,26 @@
 ### Purpose
 The Face Cognition Sign-in system
 ### General priority
-System priority:
-1. Security: SSH   
-2. Maintainability: small data capacity, limited throughput
+Objectivize functional requirement at full length  in [Requirement_Document](./Requirement_Document.md).
+
+Device priority:
+1. IDE : Pycharm / Anaconda 
+2. Exterior device : camera
 3. CPU efficiency: at least 800M 
 4. Network bandwidth efficiency:
    - Upload : 5 Mbps
    - Download : 5 Mbps  
 5. Memory efficiency: 
    - Must not consume over 200MB of RAM.
-   - required memory 128M
-6. Portability: web-end supporting different browsers, client-end software about 150MB supporting different OS
-
-Device priority:
-1. IDE : Pycharm / Anaconda 
-2. Exterior device : camera
+   - required memory 128M  
    
+System priority:
+1. Security: SSH and users' privilege licence  
+2. Maintainability: small data capacity, limited throughput
+3. Portability: web-end supporting different browsers, client-end software about 150MB supporting different OS  
 ### Outline of Design
-Review the requirement 
+Review the requirement:
+
 ![](img/user.svg)
 ### Major design issue
 + Face recognition 
@@ -50,11 +52,15 @@ Review the requirement
 >  - [ ] Modification of face recognition.
 >  - [ ] Documentation following the pace.
 
-UML
+**UML**
 1. Class UML
+
+   To be continued ...![]()
+
 2. Sequence UML
-   
-Architectural Model
+   ![]()
+
+**Architectural Model**
 
 - Multi-layer architecture pattern
 
