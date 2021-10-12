@@ -47,8 +47,7 @@ def faceCapture(name):
                 if key == ord('s'):
                     for x1, y1, x2, y2 in result:
                         face = frame[y1:y2, x1:x2]
-                    print(name)
-                    # cv2.imwrite(dir + name + '.jpg', face)
+
                     cv2.imencode('.jpg', face)[1].tofile('faceData/' + name + '.jpg')
                     break
                 elif key == ord('q'):

@@ -1,19 +1,23 @@
 import numpy as np
-import sys, os, face_recognition, time
+import sys, os
+import face_recognition
+import face_recognition.api as face_recognition
 import matplotlib.pyplot as plt
 from faceDetector import *
-from UserManage import *
 from Timing import *
-from UI.face import *
-from UI.admain import *
+from UI.menu import *
+from UI.registration import *
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QMessageBox
+from sqlite3_helper import *
 
 
-dir=r'.\faceData'
-class AdmainWindow(QtWidgets.QDialog, Ui_admainDialog):
+dir='faceData'
+sql3_helper = SQLITE3_Helper()
+
+class RegistrationWindow(QtWidgets.QDialog, Ui_registrationDialog):
     def __init__(self):
-        super(AdmainWindow, self).__init__()
+        super(RegistrationWindow, self).__init__()
         self.setupUi(self)
 
     def takePhoto(self):
@@ -26,59 +30,63 @@ class AdmainWindow(QtWidgets.QDialog, Ui_admainDialog):
             self.imgEdit.setText(name + '.jpg')
 
         else:
-            img_box = QMessageBox.information(self, "拍照", "请输入姓名")
+            QMessageBox.information(self, "Take Photo", "Please enter your name !")
 
     def addUser(self):
-        dbHelper = DBHelper()
+        userID = self.idEdit.text()
         userName = self.nameEdit.text()
-        userClass = self.classEdit.text()
-        userImg = self.imgEdit.text()
-        if userName == "" or userClass == "" or userImg == "":
-            blank_box = QMessageBox.information(self, "注册", "不能输入空值")
+        userImg = userName + '.jpg'
+
+        if userName == "" or userID == "" or userImg == "":
+            QMessageBox.information(self, "Registration", "Either ID or Name is empty !")
         else:
-            print('Name:{0}, Class:{1}, Image:{2}'.format(userName, userClass, userImg))
-            sql = "insert into users values (null,'{0}','{1}','{2}')".format(userName, userClass, userImg)
-            result = dbHelper.execute(sql, None)
-            sql = "insert into record values (null,'{}',0)".format(userName)
-            result1 = dbHelper.execute(sql, None)
-            if result and result1:
-                success_box = QMessageBox.information(self, "注册", "注册成功")
-                print("插入数据成功")
+            print('ID:{0}, Name:{1}, Image:{2}'.format(userID, userName, userImg))
+
+            # sql = "insert into record values (null,'{}',0)".format(userName)
+            # result1 = dbHelper.execute(sql, None)
+
+            testsql = "SELECT * FROM Student WHERE sid = '" + userID + "' or stuname = '" + userName + "'"
+            if len(sql3_helper.query(cmd=testsql)) == 0:
+
+                try:
+                    sql = "INSERT INTO Student VALUES ('" + userID + "','" + userName + "','" + userImg + "')"
+                    sql3_helper.insert(cmd=sql)
+                    QMessageBox.information(self, "Registration", "Registration Succeed !")
+                    print("Insert successfully")
+
+                except:
+                    QMessageBox.information(self, "Registration", "Registration Fail !")
+                    print("Insert fail")
             else:
-                fail_box = QMessageBox.information(self, "注册", "注册失败")
-                print("插入数据失败")
-        dbHelper.fetchall()
+                QMessageBox.information(self, "Registration", "Same ID or same name !")
 
-
-class Mywindow(QtWidgets.QMainWindow, Ui_MainWindow):
+class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self):
-        super(Mywindow, self).__init__()
+        super(MainWindow, self).__init__()
         self.setupUi(self)
 
-    def showCamera(self):
-        if self.cameraButton.clicked:
-            os.chdir(dir)
-            faceCapture('None')
-            face = QtGui.QPixmap('None.jpg').scaled(115, 120)
+    def execRegistration(self):
+        if self.registrationButton.clicked:
+            registrationDialog = RegistrationWindow()
+            registrationDialog.show()
+            registrationDialog.exec_()
+
+    def execIdentification(self):
+        if self.identificationButton.clicked:
+            faceCapture('unknown')
+            face = QtGui.QPixmap(dir + '/unknown.jpg').scaled(115, 120)
             self.faceView.setAlignment(Qt.AlignCenter)
             self.faceView.setPixmap(face)
 
-    def showFace(self):
-        if self.ImageButton.clicked:
-            os.chdir(dir)
+        if self.identificationButton.clicked:
+            print("hi")
             info = faceRecognize()
             if info != False:
-                self.infoLabel.setText("打卡成功！" + info)
-                # 数据表中的打卡记录设置为True
-                addRecord(info)
-            else:
-                self.infoLabel.setText("识别错误，重新识别！")
+                self.infoLabel.setText("Sign-in succeed ! " + info)
 
-    def showAdmain(self):
-        if self.admainButton.clicked:
-            admainDialog = AdmainWindow()
-            admainDialog.show()
-            admainDialog.exec_()
+                #addRecord(info)
+            else:
+                self.infoLabel.setText("Sign-in fail ！" + info)
 
     def showStatis(self):
         print("打卡统计")
@@ -86,26 +94,38 @@ class Mywindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
 
 def faceRecognize():
-    print(os.getcwd())
     # 从数据库中获取已注册的用户脸部图片
-    dbHelper = DBHelper()
-    sql = 'select * from stuInfo';
-    all_result = dbHelper.fetchall(sql, None)
+
+    sql_command = "SELECT * FROM Student"
+
+    all_result = sql3_helper.query(cmd=sql_command)
     print(all_result)
+
     # 将jpg文件加载到numpy数组中
-    imgs = list()
-    labels = list()
-    known_encoding = list()
-    print(len(all_result))
+    imgs = []
+    labels = []
+    known_encoding = []
+
+    os.chdir(dir)
+    print(os.getcwd())
+
     for i in range(len(all_result)):
+        print(all_result[i][2])
         labels.append(all_result[i][1])
-        imgs.append(face_recognition.load_image_file(all_result[i][3]))
+        imgs.append(face_recognition.load_image_file(all_result[i][2]))
         print("识别中...")
+
         # 获取每个图像文件中每个面部的面部编码
         encode = face_recognition.face_encodings(imgs[i])[0]
         known_encoding.append(encode)
-    unknown_image = face_recognition.load_image_file('None.jpg')
+
+    unknown_image = face_recognition.load_image_file('test.jpg')
     unknown_encoding = face_recognition.face_encodings(unknown_image)[0]
+
+    os.chdir('../')
+    print(os.getcwd())
+
+
     try:
         results = face_recognition.face_distance(known_encoding, unknown_encoding)
         print(results)
@@ -161,7 +181,7 @@ def drawPane():
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
-    window = Mywindow()
+    window = MainWindow()
     window.show()
     app.exec_()
     # 每天零点定时更新数据库
