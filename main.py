@@ -4,7 +4,6 @@ import face_recognition
 import face_recognition.api as face_recognition
 import matplotlib.pyplot as plt
 from faceDetector import *
-from Timing import *
 from UI.menu import *
 from UI.registration import *
 from PyQt5.QtCore import Qt
@@ -84,13 +83,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             if info != False:
                 self.infoLabel.setText("Sign-in succeed ! " + info)
 
-                #addRecord(info)
             else:
                 self.infoLabel.setText("Sign-in fail ！" + info)
 
     def showStatis(self):
         print("打卡统计")
-        drawPane()
+        #drawPane()
 
 
 def faceRecognize():
@@ -145,38 +143,26 @@ def faceRecognize():
         return False
 
 
-# 识别成功后数据表中的打卡记录设置为1
-def addRecord(name):
-    print('添加记录')
-    dbHelper = DBHelper()
-    sql = "update record set success=1 where name=%s"
-    result = dbHelper.execute(sql, name)
-    if result:
-        print("打卡记录添加成功")
-    else:
-        print("打卡记录添加失败")
-
-
 def drawPane():
     print("绘制饼状图")
     labels = ['Success', 'Failure']
     colors = ['red', 'blue']
     explode = [0.1, 0]
     sizes = []
-    dh = DBHelper()
+
     sql = "select count(*) from record where success=%s"
-    success = dh.fetchall(sql, 1)[0][0]
-    sizes.append(success)
-    print(success)
-    sql1 = "select count(*) from record where success=%s"
-    fail = dh.fetchall(sql1, 0)[0][0]
-    sizes.append(fail)
-    print(fail)
-    plt.axes(aspect=1)
-    plt.pie(x=sizes, labels=labels, explode=explode, autopct='%3.1f %%',
-            shadow=True, labeldistance=1.1, startangle=90, pctdistance=0.6)
-    plt.title("Card Record")
-    plt.show()
+    # success = dh.fetchall(sql, 1)[0][0]
+    # sizes.append(success)
+    # print(success)
+    # sql1 = "select count(*) from record where success=%s"
+    # fail = dh.fetchall(sql1, 0)[0][0]
+    # sizes.append(fail)
+    # print(fail)
+    # plt.axes(aspect=1)
+    # plt.pie(x=sizes, labels=labels, explode=explode, autopct='%3.1f %%',
+    #         shadow=True, labeldistance=1.1, startangle=90, pctdistance=0.6)
+    # plt.title("Card Record")
+    # plt.show()
 
 
 if __name__ == '__main__':
@@ -184,7 +170,5 @@ if __name__ == '__main__':
     window = MainWindow()
     window.show()
     app.exec_()
-    # 每天零点定时更新数据库
-    timerRun(0, 0)
 
     sys.exit(0)
