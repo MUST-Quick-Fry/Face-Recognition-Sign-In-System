@@ -55,10 +55,10 @@ Review the requirement:
 **UML**
 1. Class UML
 
-   To be continued ...![]()
+   ![](img/class.svg)
 
 2. Sequence UML
-   ![]()
+   ![](img/seq_login.svg)
 
 **Architectural Model**
 
