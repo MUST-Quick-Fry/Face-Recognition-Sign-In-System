@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>admainDialog</class>
- <widget class="QDialog" name="admainDialog">
+ <class>registrationDialog</class>
+ <widget class="QDialog" name="registrationDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -11,135 +11,116 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>管理员</string>
+   <string>Registration</string>
   </property>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>230</x>
-     <y>0</y>
-     <width>101</width>
+     <x>180</x>
+     <y>10</y>
+     <width>171</width>
      <height>61</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>楷体</family>
+     <family>Lucida Calligraphy</family>
      <pointsize>18</pointsize>
     </font>
    </property>
    <property name="text">
-    <string>用户管理</string>
+    <string>Registration</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
-     <x>170</x>
-     <y>90</y>
-     <width>71</width>
-     <height>16</height>
+     <x>110</x>
+     <y>140</y>
+     <width>151</width>
+     <height>21</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>幼圆</family>
+     <family>Lucida Calligraphy</family>
      <pointsize>12</pointsize>
     </font>
    </property>
    <property name="text">
-    <string>用户姓名</string>
+    <string>Student Name</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="nameEdit">
    <property name="geometry">
     <rect>
-     <x>250</x>
-     <y>90</y>
+     <x>270</x>
+     <y>140</y>
      <width>113</width>
-     <height>20</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
   <widget class="QLabel" name="label_4">
    <property name="geometry">
     <rect>
-     <x>170</x>
-     <y>140</y>
-     <width>71</width>
-     <height>16</height>
+     <x>130</x>
+     <y>80</y>
+     <width>111</width>
+     <height>20</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>幼圆</family>
+     <family>Lucida Calligraphy</family>
      <pointsize>12</pointsize>
     </font>
    </property>
    <property name="text">
-    <string>用户班级</string>
+    <string>Student ID</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="classEdit">
+  <widget class="QLineEdit" name="idEdit">
    <property name="geometry">
     <rect>
-     <x>250</x>
-     <y>140</y>
+     <x>270</x>
+     <y>80</y>
      <width>113</width>
-     <height>20</height>
+     <height>21</height>
     </rect>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_5">
-   <property name="geometry">
-    <rect>
-     <x>140</x>
-     <y>190</y>
-     <width>101</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>幼圆</family>
-     <pointsize>12</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>添加个人照片</string>
    </property>
   </widget>
   <widget class="QPushButton" name="photoButton">
    <property name="geometry">
     <rect>
-     <x>380</x>
-     <y>180</y>
-     <width>61</width>
+     <x>120</x>
+     <y>200</y>
+     <width>111</width>
      <height>31</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>幼圆</family>
+     <family>Lucida Calligraphy</family>
      <pointsize>12</pointsize>
     </font>
    </property>
    <property name="text">
-    <string>拍照</string>
+    <string>Take Photo</string>
    </property>
   </widget>
   <widget class="QPushButton" name="addButton">
    <property name="geometry">
     <rect>
-     <x>260</x>
-     <y>250</y>
-     <width>61</width>
+     <x>220</x>
+     <y>270</y>
+     <width>71</width>
      <height>31</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>幼圆</family>
+     <family>Lucida Calligraphy</family>
      <pointsize>12</pointsize>
     </font>
    </property>
@@ -147,16 +128,19 @@
     <bool>false</bool>
    </property>
    <property name="text">
-    <string>添加</string>
+    <string>Add</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="imgEdit">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="geometry">
     <rect>
-     <x>250</x>
-     <y>190</y>
+     <x>270</x>
+     <y>200</y>
      <width>113</width>
-     <height>20</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
@@ -166,7 +150,7 @@
   <connection>
    <sender>photoButton</sender>
    <signal>clicked()</signal>
-   <receiver>admainDialog</receiver>
+   <receiver>registrationDialog</receiver>
    <slot>takePhoto()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -182,7 +166,7 @@
   <connection>
    <sender>addButton</sender>
    <signal>clicked()</signal>
-   <receiver>admainDialog</receiver>
+   <receiver>registrationDialog</receiver>
    <slot>addUser()</slot>
    <hints>
     <hint type="sourcelabel">
