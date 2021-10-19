@@ -3,10 +3,12 @@
     <file>transparent.jpg</file>
   </qresource>
   <qresource prefix="imageView">
-    <file>face.jpg</file>
+    <file>logo_total.png</file>
   </qresource>
   <qresource prefix="icon">
-    <file>android.ico</file>
+    <file>sign in.png</file>
+    <file>register_icon.png</file>
+    <file>logo_round.png</file>
   </qresource>
   <qresource prefix="background">
     <file>background.jpg</file>

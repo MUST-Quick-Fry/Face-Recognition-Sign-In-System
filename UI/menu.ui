@@ -6,37 +6,83 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>764</width>
-    <height>596</height>
+    <width>923</width>
+    <height>510</height>
    </rect>
   </property>
+  <property name="palette">
+   <palette>
+    <active>
+     <colorrole role="Base">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>2</red>
+        <green>16</green>
+        <blue>43</blue>
+       </color>
+      </brush>
+     </colorrole>
+    </active>
+    <inactive>
+     <colorrole role="Base">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>2</red>
+        <green>16</green>
+        <blue>43</blue>
+       </color>
+      </brush>
+     </colorrole>
+    </inactive>
+    <disabled>
+     <colorrole role="Base">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>240</red>
+        <green>240</green>
+        <blue>240</blue>
+       </color>
+      </brush>
+     </colorrole>
+    </disabled>
+   </palette>
+  </property>
   <property name="windowTitle">
-   <string>Face-Recognition-Sign-In-System</string>
+   <string>Face Recognition Sign-In System</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../resources/face.qrc">
-    <normaloff>:/icon/android.ico</normaloff>:/icon/android.ico</iconset>
+   <iconset resource="resources/face.qrc">
+    <normaloff>:/icon/logo_round.png</normaloff>:/icon/logo_round.png</iconset>
   </property>
   <property name="autoFillBackground">
    <bool>false</bool>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-image: url(:/background/background.jpg);</string>
+   <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>250</x>
-      <y>80</y>
-      <width>331</width>
+      <x>230</x>
+      <y>100</y>
+      <width>701</width>
       <height>51</height>
      </rect>
+    </property>
+    <property name="palette">
+     <palette>
+      <active/>
+      <inactive/>
+      <disabled/>
+     </palette>
     </property>
     <property name="font">
      <font>
       <family>Lucida Calligraphy</family>
-      <pointsize>26</pointsize>
+      <pointsize>22</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
      </font>
     </property>
     <property name="autoFillBackground">
@@ -46,38 +92,22 @@
      <string notr="true">background-image: url(:/label/transparent.jpg);</string>
     </property>
     <property name="text">
-     <string>Hello, Student !!</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="faceView">
-    <property name="geometry">
-     <rect>
-      <x>80</x>
-      <y>160</y>
-      <width>291</width>
-      <height>221</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-image: url(:/imageView/face.jpg);</string>
-    </property>
-    <property name="text">
-     <string/>
+     <string>Face Recognition Sign-In System</string>
     </property>
    </widget>
    <widget class="QLabel" name="infoLabel">
     <property name="geometry">
      <rect>
-      <x>80</x>
-      <y>430</y>
-      <width>561</width>
+      <x>640</x>
+      <y>230</y>
+      <width>181</width>
       <height>81</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <family>华文彩云</family>
-      <pointsize>20</pointsize>
+      <family>Microsoft YaHei UI</family>
+      <pointsize>13</pointsize>
       <weight>75</weight>
       <bold>true</bold>
      </font>
@@ -86,72 +116,311 @@
      <string notr="true">background-image: url(:/label/transparent.jpg);</string>
     </property>
     <property name="text">
-     <string/>
+     <string>Hello Student !</string>
     </property>
    </widget>
    <widget class="QPushButton" name="registrationButton">
     <property name="geometry">
      <rect>
-      <x>450</x>
-      <y>190</y>
-      <width>201</width>
-      <height>51</height>
+      <x>620</x>
+      <y>310</y>
+      <width>211</width>
+      <height>71</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <family>Lucida Calligraphy</family>
+      <family>Microsoft YaHei UI</family>
       <pointsize>11</pointsize>
+      <weight>75</weight>
+      <italic>false</italic>
+      <bold>true</bold>
+      <kerning>false</kerning>
      </font>
     </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
     <property name="styleSheet">
-     <string notr="true">background-image: url(:/label/transparent.jpg);</string>
+     <string notr="true">QPushButton{
+	color:#000000;
+	font:bold;
+	border-radius:25px;
+	background:white;
+}</string>
     </property>
     <property name="text">
      <string>Registration</string>
     </property>
     <property name="icon">
-     <iconset resource="../resources/face.qrc">
-      <normaloff>:/icon/android.ico</normaloff>:/icon/android.ico</iconset>
+     <iconset resource="resources/face.qrc">
+      <normaloff>:/icon/register_icon.png</normaloff>:/icon/register_icon.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>40</width>
+      <height>40</height>
+     </size>
+    </property>
+    <property name="checkable">
+     <bool>false</bool>
+    </property>
+    <property name="autoDefault">
+     <bool>false</bool>
+    </property>
+    <property name="default">
+     <bool>false</bool>
+    </property>
+    <property name="flat">
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="identificationButton">
     <property name="geometry">
      <rect>
-      <x>450</x>
-      <y>290</y>
-      <width>201</width>
-      <height>51</height>
+      <x>620</x>
+      <y>400</y>
+      <width>211</width>
+      <height>71</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <family>Lucida Calligraphy</family>
+      <family>Microsoft YaHei UI</family>
       <pointsize>11</pointsize>
+      <weight>75</weight>
+      <italic>false</italic>
+      <bold>true</bold>
+      <kerning>false</kerning>
      </font>
     </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
     <property name="styleSheet">
-     <string notr="true">background-image: url(:/label/transparent.jpg);</string>
+     <string notr="true">QPushButton{
+	color:#000000;
+	font:bold;
+	border-radius:25px;
+	background:white;
+}</string>
     </property>
     <property name="text">
      <string>Identification</string>
     </property>
     <property name="icon">
-     <iconset resource="../resources/face.qrc">
-      <normaloff>:/icon/android.ico</normaloff>:/icon/android.ico</iconset>
+     <iconset resource="resources/face.qrc">
+      <normaloff>:/icon/sign in.png</normaloff>:/icon/sign in.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>40</width>
+      <height>40</height>
+     </size>
+    </property>
+    <property name="flat">
+     <bool>false</bool>
     </property>
    </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>40</y>
+      <width>191</width>
+      <height>181</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-img:url(:/imageView/logo_total.png)</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="resources/face.qrc">:/imageView/logo_total.png</pixmap>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>-10</x>
+      <y>0</y>
+      <width>961</width>
+      <height>241</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:qconicalgradient(cx:0, cy:0, angle:135, stop:0 rgba(255, 255, 0, 69), stop:0.375 rgba(255, 255, 0, 69), stop:0.423533 rgba(251, 255, 0, 145), stop:0.45 rgba(247, 255, 0, 208), stop:0.477581 rgba(255, 244, 71, 130), stop:0.518717 rgba(255, 218, 71, 130), stop:0.55 rgba(255, 255, 0, 255), stop:0.57754 rgba(255, 203, 0, 130), stop:0.625 rgba(255, 255, 0, 69), stop:1 rgba(255, 255, 0, 69))</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>240</y>
+      <width>951</width>
+      <height>281</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb(99, 193, 255), stop:1 rgba(255, 255, 255, 255))</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QWidget" name="gridLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>250</y>
+      <width>441</width>
+      <height>241</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout">
+     <property name="leftMargin">
+      <number>20</number>
+     </property>
+     <property name="topMargin">
+      <number>20</number>
+     </property>
+     <property name="rightMargin">
+      <number>20</number>
+     </property>
+     <property name="bottomMargin">
+      <number>20</number>
+     </property>
+     <property name="horizontalSpacing">
+      <number>50</number>
+     </property>
+     <property name="verticalSpacing">
+      <number>20</number>
+     </property>
+     <item row="0" column="0">
+      <widget class="QLabel" name="faceView">
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="pixmap">
+        <pixmap resource="resources/face.qrc">:/background/background.jpg</pixmap>
+       </property>
+       <property name="scaledContents">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="2">
+      <widget class="QLabel" name="faceView_3">
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="pixmap">
+        <pixmap resource="resources/face.qrc">:/background/background.jpg</pixmap>
+       </property>
+       <property name="scaledContents">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLabel" name="faceView_2">
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="pixmap">
+        <pixmap resource="resources/face.qrc">:/background/background.jpg</pixmap>
+       </property>
+       <property name="scaledContents">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="2">
+      <widget class="QLabel" name="faceView_6">
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="pixmap">
+        <pixmap resource="resources/face.qrc">:/background/background.jpg</pixmap>
+       </property>
+       <property name="scaledContents">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QLabel" name="faceView_5">
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="pixmap">
+        <pixmap resource="resources/face.qrc">:/background/background.jpg</pixmap>
+       </property>
+       <property name="scaledContents">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="faceView_4">
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="pixmap">
+        <pixmap resource="resources/face.qrc">:/background/background.jpg</pixmap>
+       </property>
+       <property name="scaledContents">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <zorder>label_3</zorder>
+   <zorder>label_4</zorder>
+   <zorder>label</zorder>
+   <zorder>infoLabel</zorder>
+   <zorder>registrationButton</zorder>
+   <zorder>identificationButton</zorder>
+   <zorder>label_2</zorder>
+   <zorder>gridLayoutWidget</zorder>
   </widget>
  </widget>
  <resources>
-  <include location="../resources/face.qrc"/>
+  <include location="resources/face.qrc"/>
  </resources>
  <connections>
   <connection>
    <sender>registrationButton</sender>
    <signal>clicked()</signal>
    <receiver>MainWindow</receiver>
-   <slot>showAdmain()</slot>
+   <slot>execRegistration()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>595</x>
@@ -167,7 +436,7 @@
    <sender>identificationButton</sender>
    <signal>clicked()</signal>
    <receiver>MainWindow</receiver>
-   <slot>showFace()</slot>
+   <slot>execIdentification()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>648</x>
@@ -181,9 +450,8 @@
   </connection>
  </connections>
  <slots>
-  <slot>showCamera()</slot>
-  <slot>showFace()</slot>
-  <slot>showAdmain()</slot>
+  <slot>execRegistration()</slot>
+  <slot>execIdentification()</slot>
   <slot>showStatis()</slot>
  </slots>
 </ui>

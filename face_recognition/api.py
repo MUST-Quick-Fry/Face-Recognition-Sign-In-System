@@ -146,6 +146,7 @@ def batch_face_locations(images, number_of_times_to_upsample=1, batch_size=128):
 def _raw_face_landmarks(face_image, face_locations=None, model="large"):
     if face_locations is None:
         face_locations = _raw_face_locations(face_image)
+        print("人脸定位",face_locations)
     else:
         face_locations = [_css_to_rect(face_location) for face_location in face_locations]
 

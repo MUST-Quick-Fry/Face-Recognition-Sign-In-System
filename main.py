@@ -1,9 +1,5 @@
-import numpy as np
 import sys, os
-import face_recognition
-import face_recognition.api as face_recognition
-import matplotlib.pyplot as plt
-from faceDetector import *
+from faceHelper import *
 from UI.menu import *
 from UI.registration import *
 from PyQt5.QtCore import Qt
@@ -20,23 +16,34 @@ class RegistrationWindow(QtWidgets.QDialog, Ui_registrationDialog):
         self.setupUi(self)
 
     def takePhoto(self):
-        name = self.nameEdit.text()
-        if name != "":
+        userID = self.idEdit.text()
+        if userID != "":
             if not os.path.exists(dir):
                 os.mkdir(dir)
 
-            faceCapture(name)
-            self.imgEdit.setText(name + '.jpg')
+            # invoke camera to capture face and save the picture name as ${id}.jpg
+            # bug! 需要判断是否存在人脸定位
+            # face_recognition.api: _raw_face_locations
+            faceCapture(userID)
 
+            if os.path.exists(os.path.join(dir,userID+'.jpg')):
+                self.imgEdit.setText(userID + '.jpg')
+                face = QtGui.QPixmap(os.path.join(dir, userID+'.jpg'))
+                self.face_label.setPixmap(face)
         else:
             QMessageBox.information(self, "Take Photo", "Please enter your name !")
 
     def addUser(self):
         userID = self.idEdit.text()
         userName = self.nameEdit.text()
-        userImg = userName + '.jpg'
+        userImg = userID + '.jpg'
 
-        if userName == "" or userID == "" or userImg == "":
+        # if photo not exist
+        if not os.path.exists(os.path.join(dir,userImg)):
+            QMessageBox.information(self, "Registration", "Please Take Photo !")
+
+        # if name or id is not input
+        if userName == "" or userID == "":
             QMessageBox.information(self, "Registration", "Either ID or Name is empty !")
         else:
             print('ID:{0}, Name:{1}, Image:{2}'.format(userID, userName, userImg))
@@ -44,7 +51,7 @@ class RegistrationWindow(QtWidgets.QDialog, Ui_registrationDialog):
             # sql = "insert into record values (null,'{}',0)".format(userName)
             # result1 = dbHelper.execute(sql, None)
 
-            testsql = "SELECT * FROM Student WHERE sid = '" + userID + "' or stuname = '" + userName + "'"
+            testsql = "SELECT * FROM Student WHERE sid = '{}'".format(userID)
             if len(sql3_helper.query(cmd=testsql)) == 0:
 
                 try:
@@ -52,6 +59,7 @@ class RegistrationWindow(QtWidgets.QDialog, Ui_registrationDialog):
                     sql3_helper.insert(cmd=sql)
                     QMessageBox.information(self, "Registration", "Registration Succeed !")
                     print("Insert successfully")
+                    self.close()
 
                 except:
                     QMessageBox.information(self, "Registration", "Registration Fail !")
@@ -63,6 +71,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
         self.setupUi(self)
+        self.count=0
+        self.MAX=5
 
     def execRegistration(self):
         if self.registrationButton.clicked:
@@ -73,74 +83,33 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def execIdentification(self):
         if self.identificationButton.clicked:
             faceCapture('unknown')
-            face = QtGui.QPixmap(dir + '/unknown.jpg').scaled(115, 120)
-            self.faceView.setAlignment(Qt.AlignCenter)
-            self.faceView.setPixmap(face)
+            unknown_file='unknown.jpg'
+            unknown_path=os.path.join(dir,unknown_file)
 
-        if self.identificationButton.clicked:
-            print("hi")
-            info = faceRecognize()
-            if info != False:
-                self.infoLabel.setText("Sign-in succeed ! " + info)
+            if os.path.exists(unknown_path):
+                face = QtGui.QPixmap(unknown_path)
+                self.gridLayout.itemAt(self.count).widget().setPixmap(face)
+                if self.count<self.MAX:
+                    self.count+=1
+                else:
+                    self.count=0
+                print("picture added")
 
+            success = faceRecognize(sql3_helper,unknown_file,dir)
+            print(success)
+            if success != False:
+                userID=success[0]
+                userName=success[1]
+                courseID=1
+                sql = "INSERT INTO SignIn (Sid,Cid) VALUES('{}',{})".format(userID,courseID)
+                sql3_helper.insert(sql)
+                QMessageBox.information(self, "Registration", "Sign in succeed ! Welcome {}".format(userName))
             else:
-                self.infoLabel.setText("Sign-in fail ！" + info)
+                QMessageBox.information(self, "Registration", "Sign in fail ! Please Retry")
 
     def showStatis(self):
         print("打卡统计")
         #drawPane()
-
-
-def faceRecognize():
-    # 从数据库中获取已注册的用户脸部图片
-
-    sql_command = "SELECT * FROM Student"
-
-    all_result = sql3_helper.query(cmd=sql_command)
-    print(all_result)
-
-    # 将jpg文件加载到numpy数组中
-    imgs = []
-    labels = []
-    known_encoding = []
-
-    os.chdir(dir)
-    print(os.getcwd())
-
-    for i in range(len(all_result)):
-        print(all_result[i][2])
-        labels.append(all_result[i][1])
-        imgs.append(face_recognition.load_image_file(all_result[i][2]))
-        print("识别中...")
-
-        # 获取每个图像文件中每个面部的面部编码
-        encode = face_recognition.face_encodings(imgs[i])[0]
-        known_encoding.append(encode)
-
-    unknown_image = face_recognition.load_image_file('test.jpg')
-    unknown_encoding = face_recognition.face_encodings(unknown_image)[0]
-
-    os.chdir('../')
-    print(os.getcwd())
-
-
-    try:
-        results = face_recognition.face_distance(known_encoding, unknown_encoding)
-        print(results)
-        print(np.min(results))
-        if np.min(results) > 0.30:
-            return False
-        # 找出最小值的下标
-        min = 1.0
-        minIndex = 0
-        for i in range(len(results)):
-            if results[i] < min:
-                min = results[i]
-                minIndex = i
-        print(labels[minIndex])
-        return labels[minIndex]
-    except:
-        return False
 
 
 def drawPane():
