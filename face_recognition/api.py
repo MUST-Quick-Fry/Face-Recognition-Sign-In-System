@@ -202,6 +202,9 @@ def face_encodings(face_image, known_face_locations=None, num_jitters=1, model="
     :return: A list of 128-dimensional face encodings (one for each face in the image)
     """
     raw_landmarks = _raw_face_landmarks(face_image, known_face_locations, model)
+    if len(raw_landmarks) == 0:
+        return False
+    print(len(raw_landmarks))
     return [np.array(face_encoder.compute_face_descriptor(face_image, raw_landmark_set, num_jitters)) for raw_landmark_set in raw_landmarks]
 
 

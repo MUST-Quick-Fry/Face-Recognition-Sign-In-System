@@ -103,9 +103,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 courseID=1
                 sql = "INSERT INTO SignIn (Sid,Cid) VALUES('{}',{})".format(userID,courseID)
                 sql3_helper.insert(sql)
-                QMessageBox.information(self, "Sign In", "Sign in succeed ! Welcome {}".format(userName))
+                QMessageBox.information(self, "Sign In", "Sign in succeed !\nWelcome {}".format(userName))
             else:
                 QMessageBox.information(self, "Sign In", "Sign in fail ! Please Retry")
+                self.execIdentification()
 
     def showStatis(self):
         print("打卡统计")
