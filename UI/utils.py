@@ -20,8 +20,6 @@ class RegistrationWindow(QtWidgets.QDialog,Ui_registrationDialog):
                 os.mkdir(dir)
 
             # invoke camera to capture face and save the picture name as ${id}.jpg
-            # bug (solved)! 需要判断是否存在人脸定位
-            # face_recognition.api: _raw_face_locations
             faceCapture(userID)
             img_path=os.path.join(dir,userID + '.jpg')
             if os.path.exists(img_path):
@@ -31,7 +29,6 @@ class RegistrationWindow(QtWidgets.QDialog,Ui_registrationDialog):
 
                 unknown_image = face_recognition.load_image_file(img_path)
                 print("load unknown")
-                # (solved) bug! 如果图片中没有人脸，则会出现错误
                 unknown_encodings = face_recognition.face_encodings(unknown_image)
                 if not unknown_encodings:
                     QMessageBox.information(self,"Take Photo","No Face Recognition, Please Retry !")

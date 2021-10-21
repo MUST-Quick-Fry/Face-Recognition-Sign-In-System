@@ -27,7 +27,6 @@ def getface(image):
 
 
 # face capture
-# bug (solved) ! 当设备没有camera需要报错
 def faceCapture(name):
     cap = cv2.VideoCapture(0)  # open the camera
     if not cap.isOpened():
@@ -73,7 +72,6 @@ def faceRecognize(sql3_helper,unknown_path,dir):
 
     unknown_image = face_recognition.load_image_file(unknown_path)
     print("load unknown")
-    # (solved) bug! 如果图片中没有人脸，则会出现错误
     unknown_encodings = face_recognition.face_encodings(unknown_image)
     if not unknown_encodings:
         return False,"No face recognized"
@@ -96,7 +94,6 @@ def faceRecognize(sql3_helper,unknown_path,dir):
 
     for i in range(len(all_result)):
 
-        # bug (solved)! 增加文件是否存在判断
         if os.path.exists(all_result[i][2]):
             print("Loading ", all_result[i][2])
             labels.append(all_result[i])
