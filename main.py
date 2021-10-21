@@ -7,8 +7,7 @@ import sys
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
     window = MainWindow()
-    window.setMinimumSize(951,522)
-    window.setMaximumSize(951,522)
+    window.setFixedSize(window.width(), window.height())
     window.show()
     app.exec_()
 

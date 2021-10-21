@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>923</width>
-    <height>510</height>
+    <width>884</width>
+    <height>600</height>
    </rect>
   </property>
   <property name="palette">
@@ -266,7 +266,7 @@
       <x>0</x>
       <y>240</y>
       <width>951</width>
-      <height>281</height>
+      <height>361</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -279,13 +279,16 @@
    <widget class="QWidget" name="gridLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>70</x>
-      <y>250</y>
-      <width>441</width>
-      <height>241</height>
+      <x>40</x>
+      <y>280</y>
+      <width>531</width>
+      <height>281</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout">
+     <property name="sizeConstraint">
+      <enum>QLayout::SetDefaultConstraint</enum>
+     </property>
      <property name="leftMargin">
       <number>20</number>
      </property>
@@ -354,6 +357,12 @@
      </item>
      <item row="1" column="2">
       <widget class="QLabel" name="faceView_6">
+       <property name="minimumSize">
+        <size>
+         <width>20</width>
+         <height>20</height>
+        </size>
+       </property>
        <property name="styleSheet">
         <string notr="true"/>
        </property>
@@ -402,6 +411,53 @@
      </item>
     </layout>
    </widget>
+   <widget class="QPushButton" name="printButton">
+    <property name="geometry">
+     <rect>
+      <x>620</x>
+      <y>490</y>
+      <width>211</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Microsoft YaHei UI</family>
+      <pointsize>11</pointsize>
+      <weight>75</weight>
+      <italic>false</italic>
+      <bold>true</bold>
+      <kerning>false</kerning>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+	color:#000000;
+	font:bold;
+	border-radius:25px;
+	background:white;
+}</string>
+    </property>
+    <property name="text">
+     <string>Print Record</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>resources/print.png</normaloff>resources/print.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>40</width>
+      <height>40</height>
+     </size>
+    </property>
+    <property name="flat">
+     <bool>false</bool>
+    </property>
+   </widget>
    <zorder>label_3</zorder>
    <zorder>label_4</zorder>
    <zorder>label</zorder>
@@ -410,6 +466,7 @@
    <zorder>identificationButton</zorder>
    <zorder>label_2</zorder>
    <zorder>gridLayoutWidget</zorder>
+   <zorder>printButton</zorder>
   </widget>
  </widget>
  <resources>
@@ -448,10 +505,26 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>printButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>execDrawPlot()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>725</x>
+     <y>525</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>441</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>execRegistration()</slot>
   <slot>execIdentification()</slot>
-  <slot>showStatis()</slot>
+  <slot>execDrawPlot()</slot>
  </slots>
 </ui>

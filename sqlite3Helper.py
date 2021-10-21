@@ -8,7 +8,7 @@ class SQLITE3_Helper:
         with sqlite3.connect(self.db) as con:
             mycursor = con.cursor()
             mycursor.execute(cmd)
-            self.display()
+            #self.display()
 
         return mycursor.fetchall()
 

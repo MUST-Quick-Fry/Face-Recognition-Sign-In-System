@@ -3,6 +3,8 @@ from PyQt5.QtWidgets import QMessageBox
 from sqlite3Helper import *
 from UI.menu import *
 from UI.registration import *
+import matplotlib.pyplot as plt
+import numpy as np
 
 dir = 'faceData'
 sql3_helper = SQLITE3_Helper()
@@ -119,27 +121,48 @@ class MainWindow(QtWidgets.QMainWindow,Ui_MainWindow):
                 # automatically retry
                 self.execIdentification()
 
-    def showStatis(self):
-        print("打卡统计")
-        # drawPane()
+    def execDrawPlot(self):
+        sqlcmd = "SELECT * FROM SignIn"
+        re = sql3_helper.query(sqlcmd)
+        today = "2021-10-19"
+        # print(re)
 
-    def drawPane():
-        print("绘制饼状图")
-        labels = ['Success','Failure']
-        colors = ['red','blue']
-        explode = [0.1,0]
-        sizes = []
+        # get time record
+        record = []
+        for each in re:
+            if list(each)[3].split()[0] == today:
+                s = list(each)[3].split()[1]
+                record.append(str(s.split(":")[0]) + ":" + str(s.split(":")[1]))
 
-        sql = "select count(*) from record where success=%s"
-        # success = dh.fetchall(sql, 1)[0][0]
-        # sizes.append(success)
-        # print(success)
-        # sql1 = "select count(*) from record where success=%s"
-        # fail = dh.fetchall(sql1, 0)[0][0]
-        # sizes.append(fail)
-        # print(fail)
-        # plt.axes(aspect=1)
-        # plt.pie(x=sizes, labels=labels, explode=explode, autopct='%3.1f %%',
-        #         shadow=True, labeldistance=1.1, startangle=90, pctdistance=0.6)
-        # plt.title("Card Record")
-        # plt.show()
+        # print(record)
+
+        dic = {}
+        for key in record:
+            dic[key] = dic.get(key, 0) + 1
+
+        # print(dic)
+
+        time = list(dic)
+        num = list(dic.values())
+        # print(time)
+        # print(num)
+
+        # set parameters
+        data_num = len(time)
+        data_max = max(num)
+        fig_width = 8 + 0.5 * data_num
+        fig_height = 4 + 0.5 * data_num
+
+        # draw plot
+        plt.figure(figsize=(fig_width, fig_height))
+        plt.title("Sign-in Record on " + str(today) + "          Total students: " + str(len(num)))
+        plt.xlabel("Sign-in Time")
+        plt.ylabel("Number of Students")
+        plt.ylim(0, 1.2 * data_max)
+        plt.yticks([])
+        plt.bar(time, num, color=["#707070", "#949494", "#B8B8B8", "#DCDCDC"], width=0.4)
+
+        for a, b in zip(time, num):
+            plt.text(a, b + 0.02, '%.0f' % b, ha='center', va='bottom', fontsize=11)
+
+        plt.show()
