@@ -27,9 +27,12 @@ def getface(image):
 
 
 # face capture
-# bug ! 当设备没有camera需要报错
+# bug (solved) ! 当设备没有camera需要报错
 def faceCapture(name):
     cap = cv2.VideoCapture(0)  # open the camera
+    if not cap.isOpened():
+        print('Camera close')
+        return False
 
     # video
     # width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH) + 0.5)
@@ -38,7 +41,6 @@ def faceCapture(name):
     while (cap.isOpened()):
         # read the frame of camera
         ret,frame = cap.read()
-
         # add keyboard event
         key = cv2.waitKey(1) & 0xFF
         if ret == True:
@@ -56,11 +58,10 @@ def faceCapture(name):
                     break
         else:
             break
-
     # release resource
     cap.release()
     cv2.destroyAllWindows()
-
+    return True
 
 # import face_recognition
 import face_recognition.api as face_recognition
@@ -69,8 +70,17 @@ import numpy as np
 
 
 def faceRecognize(sql3_helper,unknown_path,dir):
-    # 从数据库中获取已注册的用户脸部图片
 
+    unknown_image = face_recognition.load_image_file(unknown_path)
+    print("load unknown")
+    # (solved) bug! 如果图片中没有人脸，则会出现错误
+    unknown_encodings = face_recognition.face_encodings(unknown_image)
+    if not unknown_encodings:
+        return False,"No face recognized"
+    unknown_encoding = unknown_encodings[0]
+    print("encode unknown")
+
+    # 从数据库中获取已注册的用户脸部图片
     sql_command = "SELECT * FROM Student"
 
     all_result = sql3_helper.query(cmd=sql_command)
@@ -86,53 +96,35 @@ def faceRecognize(sql3_helper,unknown_path,dir):
 
     for i in range(len(all_result)):
 
-        # bug! 增加文件是否存在判断
-        # bug! 需要判断是否存在人脸定位
-        # face_recognition.api: _raw_face_locations
+        # bug (solved)! 增加文件是否存在判断
+        if os.path.exists(all_result[i][2]):
+            print("Loading ", all_result[i][2])
+            labels.append(all_result[i])
+            imgs.append(face_recognition.load_image_file(all_result[i][2]))
 
-        print("Loading ", all_result[i][2])
-        labels.append(all_result[i])
-        imgs.append(face_recognition.load_image_file(all_result[i][2]))
+            # 获取每个图像文件中每个面部的面部编码
+            encode = face_recognition.face_encodings(imgs[i])[0]
+            known_encoding.append(encode)
+        else:
+            return False, "Face Data Missing"
 
-        # 获取每个图像文件中每个面部的面部编码
-        encode = face_recognition.face_encodings(imgs[i])[0]
-        known_encoding.append(encode)
-
-    print(len(known_encoding))
-    unknown_image = face_recognition.load_image_file(unknown_path)
-
+    print("total face:",len(known_encoding))
     os.chdir('../')
     print(os.getcwd())
-
-    print("load unknown")
-    # (solved) bug! 如果图片中没有人脸，则会出现错误
-    unknown_encodings = face_recognition.face_encodings(unknown_image)
-    if not unknown_encodings:
-        return False
-    unknown_encoding = unknown_encodings[0]
-    print("encode unknown")
 
     try:
         results = face_recognition.face_distance(known_encoding,unknown_encoding)
         print(results)
         print(np.min(results))
 
-        # 置信区间, 测试时暂时注释，应该设置一个合适的值
-        # if np.min(results) > 0.30:
-        #     return False
+        # confidence interval
+        if np.min(results) > 0.50:
+            return False, "Low Confidence "
 
-        # 找出最小值的下标
+        # find minimum
         minIndex=np.argmin(results)
-        return labels[minIndex]
-        # min = 1.0
-        # minIndex = 0
-        # for i in range(len(results)):
-        #     if results[i] < min:
-        #         min = results[i]
-        #         minIndex = i
-        # print(labels[minIndex])
-        # return labels[minIndex]
+        return labels[minIndex],"success"
 
     except Exception as e:
         print(e)
-        return False
+        return False,"exception"

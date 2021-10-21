@@ -62,7 +62,7 @@ class Ui_registrationDialog(object):
         self.imgEdit.setGeometry(QtCore.QRect(270, 200, 113, 21))
         self.imgEdit.setObjectName("imgEdit")
         self.face_label = QtWidgets.QLabel(registrationDialog)
-        self.face_label.setGeometry(QtCore.QRect(410, 200, 40, 40))
+        self.face_label.setGeometry(QtCore.QRect(410, 70, 80, 80))
         self.face_label.setText("")
         self.face_label.setScaledContents(True)
         self.face_label.setObjectName("face_label")
