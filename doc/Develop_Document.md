@@ -14,26 +14,31 @@ In a nutshell, we foster a developing environment with the features below :
 
 **Role Task**
 
-|Member|Role|Description|
-|--|------|------------------------------------|
-|Kennard Wang|||
-|CairneRain|||
-|Tim He|||
-|goodkillerchen|||
+|Member|Role|
+|--|------|
+|Kennard Wang|Scrum Master|
+|Tim He|Product Owner|
+|CairneRain|Developer|
+|goodkillerchen|Maintainer|
 
-- Scrum Master : be accountable for establishing Scrum as defined in the Scrum Guide, helping everyone understand Scrum theory and practice, both within the Scrum Team and the organization.
-- Product Owner: Developing and explicitly communicating the Product Goal;
-Creating and clearly communicating Product Backlog items;
-Ordering Product Backlog items; and,
-Ensuring that the Product Backlog is transparent, visible and understood.
-- Developer : Creating a plan for the Sprint, the Sprint Backlog;
-Instilling quality by adhering to a Definition of Done;
-Adapting their plan each day toward the Sprint Goal;
-Holding each other accountable as professionals. 
-- Maintainer : Testing the sub-done Sprint including modifying and checking the fundamental task;
-Debugging with developers and tagging the risk zone;
-Monitoring the instant information flow of sessions among different users;
-Supporting technological assist by contract or extra way.
+- Scrum Master :
+  - be accountable for establishing Scrum as defined in the Scrum Guide; 
+  - helping everyone understand Scrum theory and practice, both within the Scrum Team and the organization.
+- Product Owner: 
+  - Developing and explicitly communicating the Product Goal;
+  - Creating and clearly communicating Product Backlog items;
+  - Ordering Product Backlog items;
+  - Ensuring that the Product Backlog is transparent, visible and understood.
+- Developer : 
+  - Creating a plan for the Sprint, the Sprint Backlog;
+  - Instilling quality by adhering to a Definition of Done;
+   - Adapting their plan each day toward the Sprint Goal;
+  - Holding each other accountable as professionals. 
+- Maintainer : 
+  - Testing the sub-done Sprint including modifying and checking the fundamental task;
+  - Debugging with developers and tagging the risk zone;
+  - Monitoring the instant information flow of sessions among different users;
+  - Supporting technological assist by contract or extra way.
  
 > more reference -- [scrum](https://scrumguides.org/scrum-guide.html)
 

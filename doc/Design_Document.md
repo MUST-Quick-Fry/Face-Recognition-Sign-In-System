@@ -58,6 +58,7 @@ Review the requirement:
    ![](img/class.svg)
 
 2. Sequence UML
+ 
    ![](img/seq_login.svg)
 
 **Architectural Model**
