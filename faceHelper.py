@@ -1,4 +1,7 @@
 import cv2
+import face_recognition.api as face_recognition
+import os
+import numpy as np
 
 
 # face detection
@@ -8,7 +11,7 @@ def getface(image):
     # create classifier
     clf = cv2.CascadeClassifier(model_path)
     # set degree of gray
-    gray = cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
+    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
     # get face and draw a rectangle
     faces = clf.detectMultiScale(
@@ -20,10 +23,10 @@ def getface(image):
     )
 
     result = []
-    for (x,y,w,h) in faces:
-        result.append((x,y,x + w,y + h))
-        cv2.rectangle(image,(x,y),(x + w,y + h),(0,255,0),2)
-    return image,result
+    for (x, y, w, h) in faces:
+        result.append((x, y, x + w, y + h))
+        cv2.rectangle(image, (x, y), (x + w, y + h), (0, 255, 0), 2)
+    return image, result
 
 
 # face capture
@@ -34,47 +37,39 @@ def faceCapture(name):
         return False
 
     # video
-    # width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH) + 0.5)
-    # height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT) + 0.5)
-
     while (cap.isOpened()):
         # read the frame of camera
-        ret,frame = cap.read()
+        ret, frame = cap.read()
         # add keyboard event
         key = cv2.waitKey(1) & 0xFF
         if ret == True:
             # get current frame
-            faceCapture,result = getface(frame)
-            cv2.imshow('Camera',faceCapture)
+            faceCapture, result = getface(frame)
+            cv2.imshow('Camera, press "s" to save, press "q" to quit', faceCapture)
             if result:
                 if key == ord('s'):
-                    for x1,y1,x2,y2 in result:
-                        face = frame[y1:y2,x1:x2]
+                    for x1, y1, x2, y2 in result:
+                        face = frame[y1:y2, x1:x2]
 
-                    cv2.imencode('.jpg',face)[1].tofile('faceData/' + name + '.jpg')
+                    cv2.imencode('.jpg', face)[1].tofile('faceData/' + name + '.jpg')
                     break
                 elif key == ord('q'):
                     break
         else:
             break
+
     # release resource
     cap.release()
     cv2.destroyAllWindows()
     return True
 
-# import face_recognition
-import face_recognition.api as face_recognition
-import os
-import numpy as np
 
-
-def faceRecognize(sql3_helper,unknown_path,dir):
-
+def faceRecognize(sql3_helper, unknown_path, dir):
     unknown_image = face_recognition.load_image_file(unknown_path)
     print("load unknown")
     unknown_encodings = face_recognition.face_encodings(unknown_image)
     if not unknown_encodings:
-        return False,"No face recognized"
+        return False, "No face recognized"
     unknown_encoding = unknown_encodings[0]
     print("encode unknown")
 
@@ -105,7 +100,7 @@ def faceRecognize(sql3_helper,unknown_path,dir):
         else:
             return False, "Face Data Missing"
 
-    print("total face:",len(known_encoding))
+    print("total face:", len(known_encoding))
     os.chdir('../')
     print(os.getcwd())
 
@@ -115,13 +110,13 @@ def faceRecognize(sql3_helper,unknown_path,dir):
         print(np.min(results))
 
         # confidence interval
-        if np.min(results) > 0.50:
+        if np.min(results) > 0.47:
             return False, "Low Confidence "
 
         # find minimum
         minIndex=np.argmin(results)
-        return labels[minIndex],"success"
+        return labels[minIndex], "success"
 
     except Exception as e:
         print(e)
-        return False,"exception"
+        return False, "exception"

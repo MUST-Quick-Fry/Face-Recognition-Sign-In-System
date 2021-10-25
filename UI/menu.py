@@ -123,7 +123,7 @@ class Ui_MainWindow(object):
         self.label_4.setText("")
         self.label_4.setObjectName("label_4")
         self.gridLayoutWidget = QtWidgets.QWidget(self.centralwidget)
-        self.gridLayoutWidget.setGeometry(QtCore.QRect(40, 280, 531, 281))
+        self.gridLayoutWidget.setGeometry(QtCore.QRect(60, 260, 501, 311))
         self.gridLayoutWidget.setObjectName("gridLayoutWidget")
         self.gridLayout = QtWidgets.QGridLayout(self.gridLayoutWidget)
         self.gridLayout.setSizeConstraint(QtWidgets.QLayout.SetDefaultConstraint)
@@ -220,6 +220,6 @@ class Ui_MainWindow(object):
         self.label.setText(_translate("MainWindow", "Face Recognition Sign-In System"))
         self.infoLabel.setText(_translate("MainWindow", "Hello Student !"))
         self.registrationButton.setText(_translate("MainWindow", "Registration"))
-        self.identificationButton.setText(_translate("MainWindow", "Identification"))
+        self.identificationButton.setText(_translate("MainWindow", "   Sign  in       "))
         self.printButton.setText(_translate("MainWindow", "Print Record"))
-import face_rc
+import menu_rc

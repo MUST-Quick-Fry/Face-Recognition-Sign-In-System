@@ -6,6 +6,7 @@
     <file>logo_total.png</file>
   </qresource>
   <qresource prefix="icon">
+    <file>print.png</file>
     <file>sign in.png</file>
     <file>register_icon.png</file>
     <file>logo_round.png</file>
