@@ -12,7 +12,7 @@ In a nutshell, we foster a developing environment with the features below :
 
 4. Repeat
 
-**Role Task**
+### **Role Task**
 
 |Member|Role|
 |--|------|
@@ -43,9 +43,19 @@ In a nutshell, we foster a developing environment with the features below :
 > more reference -- [scrum](https://scrumguides.org/scrum-guide.html)
 
 ### Product Roadmap
+In our Product Roadmap, initialize **Epic Story** which describes main product modules as listing stories 
+![](img/roadmap.png)
 
 ### Product Backlog
-Milestone
-### Sprint
+- Milestone1 -- Client-Side Product 
+  
+  ![](img/Milestone1.png)
+- Milestone2 -- Web Product 
 
-### Drawback
+  ![](img/Milestone2.png)
+### Sprint
+- Face Cognition Prototype
+
+  ![](img/sprint1.png)
+- Web Prototype (TBD)
+
