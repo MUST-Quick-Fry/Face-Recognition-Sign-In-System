@@ -3,6 +3,8 @@
 import os
 import sys
 
+# admin : username:admin password:1234
+
 def main():
     """Run administrative tasks."""
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'django_site.settings')

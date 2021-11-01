@@ -15,7 +15,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
@@ -27,16 +26,17 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
+    'simpleui',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'tasks'
 ]
 
 MIDDLEWARE = [
@@ -69,7 +69,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'django_site.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
@@ -79,7 +78,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'stuDB.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -99,7 +97,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
@@ -113,7 +110,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
@@ -123,3 +119,58 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Setting LOGO
+# SIMPLEUI_LOGO=''
+
+# Customize menu
+SIMPLEUI_CONFIG = {
+    'menu_display': ['Task Management', 'Authentication'],
+
+    'dynamic': False,
+    'menus': [
+        {
+            'app': 'auth',
+            'name': 'Authentication',
+            'icon': 'fas fa-user-shield',
+            'models': [
+                {
+                    'name': 'User list',
+                    'icon': 'fa fa-user',
+                    'url': 'auth/user/'
+                },
+                {
+                    'name': 'User Group',
+                    'icon': 'fa fa-th-list',
+                    'url': 'auth/group/'
+                }
+            ]
+        },
+
+        {
+            'name': 'Task Management',
+            'icon': 'fa fa-th-list',
+            'models': [
+                {
+                    'name': 'Task list',
+                    # url name method :'/admin/应用名小写/模型名小写/'
+                    'url': '/admin/tasks/task/',
+                    'icon': 'fa fa-tasks'
+                },
+            ]
+        },
+    ]
+}
+
+# The name actually displayed on the menu
+SIMPLEUI_ICON = {
+    'Task Management': 'fas fa-tasks',
+    'Tasks': 'fas fa-th-list',
+}
+
+# Hide simpleui ad links and usage analysis on the right
+SIMPLEUI_HOME_INFO = False
+SIMPLEUI_ANALYSIS = False
+
+# Home page
+# SIMPLEUI_HOME_PAGE = '/tasks/dashboard/'
