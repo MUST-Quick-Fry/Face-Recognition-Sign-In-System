@@ -5,6 +5,7 @@ from UI.menu import *
 from UI.registration import *
 import matplotlib.pyplot as plt
 import numpy as np
+import re
 
 dir = 'faceData'
 sql3_helper = SQLITE3_Helper()
@@ -17,12 +18,19 @@ class RegistrationWindow(QtWidgets.QDialog,Ui_registrationDialog):
 
     def takePhoto(self):
         userID = self.idEdit.text()
-        if userID != "":
+        # id not obey the rule
+        if userID =="":
+            QMessageBox.information(self, "Warning", "Please enter your name !")
+        elif re.match("^[0-9]{4}853[a-zA-Z0-9]{5}[0-9]{4}$",userID):
             if not os.path.exists(dir):
                 os.mkdir(dir)
 
             # invoke camera to capture face and save the picture name as ${id}.jpg
-            faceCapture(userID)
+            opened=faceCapture(userID)
+            if not opened:
+                QMessageBox.information(self,"Warning","No camera")
+                return
+
             img_path = os.path.join(dir, userID + '.jpg')
             if os.path.exists(img_path):
                 self.imgEdit.setText(userID + '.jpg')
@@ -36,7 +44,7 @@ class RegistrationWindow(QtWidgets.QDialog,Ui_registrationDialog):
                     QMessageBox.information(self, "Warning", "No Face Recognition, Please Retry !")
                     os.remove(img_path)
         else:
-            QMessageBox.information(self, "Warning", "Please enter your name !")
+            QMessageBox.information(self, "Warning", "User ID not obey the rule, e.g. 1809853zi0110099")
 
     def addUser(self):
         userID = self.idEdit.text()
