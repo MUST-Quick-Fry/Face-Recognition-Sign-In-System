@@ -125,10 +125,27 @@ SIMPLEUI_LOGO = 'https://www.must.edu.mo/images/logo_new.png'
 
 # Customize menu
 SIMPLEUI_CONFIG = {
-    'menu_display': ['Task Management', 'Authentication', 'Control Panel'],
+    'menu_display': ['Control Panel','Task Management', 'Authentication'],
 
     'dynamic': False,
     'menus': [
+        {
+            'name': 'Control Panel',
+            'icon': 'fa fa-eye',
+            'models': [
+                {
+                    'name': 'Sign-In Records',
+                    'icon': 'fa fa-check-square',
+                    'url': '/tasks/sign_in_records'
+                },
+                {
+                    'name': 'Retroactive Records',
+                    'icon': '',
+                    'url': '/admin/tasks/signin/'
+                }
+            ]
+            # 'url': '/tasks/dashboard/'
+        },
         {
             'app': 'auth',
             'name': 'Authentication',
@@ -146,28 +163,45 @@ SIMPLEUI_CONFIG = {
                 }
             ]
         },
-
-        {
-            'name': 'Control Panel',
-            'icon': 'fa fa-eye',
-            'url': '/tasks/dashboard/'
-        },
-
         {
             'name': 'Task Management',
             'icon': 'fa fa-th-list',
             'models': [
                 {
-                    'name': 'Task list',
+                    'name': 'SignIn',
                     # url name method :'/admin/应用名小写/模型名小写/'
-                    'url': '/admin/tasks/task/',
+                    'url': '/admin/tasks/signin/',
+                    'icon': 'fa fa-tasks'
+                },
+                {
+                    'name': 'Teacher',
+                    # url name method :'/admin/应用名小写/模型名小写/'
+                    'url': '/admin/tasks/teacher/',
+                    'icon': 'fa fa-tasks'
+                },
+                {
+                    'name': 'Student',
+                    # url name method :'/admin/应用名小写/模型名小写/'
+                    'url': '/admin/tasks/student/',
                     'icon': 'fa fa-tasks'
                 },
                 {
                     'name': 'Course List',
                     'url': '/admin/tasks/course',
                     'icon': 'fa fa-tasks'
+                },
+                {
+                    'name': 'Take Course',
+                    'url': '/admin/tasks/takeclass',
+                    'icon': 'fa fa-tasks'
+                },
+                {
+                    'name': 'Task list',
+                    # url name method :'/admin/应用名小写/模型名小写/'
+                    'url': '/admin/tasks/task/',
+                    'icon': 'fa fa-tasks'
                 }
+
             ]
         },
     ]
