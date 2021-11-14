@@ -27,6 +27,7 @@ Action Stub:
 2. A2: Error exception
 
 Effect Diagram:
+
 ![](img/black_test_regist.svg)
 
 Decision table:  
@@ -114,7 +115,9 @@ In the walkthrough, it is also important that after the review, the presenter pr
 ### Dynamic White-Box Testing 
 We use **White Box Test** to test 3 different and critical functions in [`UI/utils.py`](../UI/utils.py)
 1. `takePhoto` func
+    
     Control FLow Graph:
+    
     ![](img/take_photo.svg)
 
     Loop Complexity：
@@ -152,7 +155,8 @@ We use **White Box Test** to test 3 different and critical functions in [`UI/uti
 
 2. `addUser` func
 
-    Control Flow Graph
+    Control Flow Graph: 
+    
     ![](img/add_user.svg)
 
     Loop Complexity:
@@ -179,6 +183,7 @@ We use **White Box Test** to test 3 different and critical functions in [`UI/uti
 3. `execIdentification` func
 
     Control Flow Graph:
+    
     ![](img/identification.svg)
 
     Loop Complexity:
