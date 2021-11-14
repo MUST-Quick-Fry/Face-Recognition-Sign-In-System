@@ -20,7 +20,7 @@ class RegistrationWindow(QtWidgets.QDialog,Ui_registrationDialog):
         userID = self.idEdit.text()
         # id not obey the rule
         if userID =="":
-            QMessageBox.information(self, "Warning", "Please enter your name !")
+            QMessageBox.information(self, "Warning", "Please enter your ID !")
         elif re.match("^[0-9]{4}853[a-zA-Z0-9]{5}[0-9]{4}$",userID):
             if not os.path.exists(dir):
                 os.mkdir(dir)
