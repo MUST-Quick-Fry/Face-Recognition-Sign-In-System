@@ -58,7 +58,7 @@ Test cases:
 Static Testing Tool
 
 In order to fix static logic bugs and identify code styles, including naming regulation, import order and variable definition, we use the tool -- 
-[pylint](https://github.com/PyCQA/pylinthttps:  //github.com/PyCQA/pylint) for simple the censor among members.  
+[pylint](https://github.com/PyCQA/pylint) for simple the censor among members.  
 
 For example, the testing result about [faceHelper.py](../faceHelper.py) :
 ```text
@@ -108,8 +108,7 @@ Your code has been rated at -0.40/10 (previous run: -0.40/10, +0.00)
 
 Walkthrough :
 
-In the walkthrough, it is also important that after the review, the presenter prepare a report on what problems have been found and how to plan to solve the found software defects,
-referred by #10
+In the walkthrough, it is also important that after the review, the presenter prepare a report on what problems have been found and how to plan to solve the found software defects, referred by [#10](https://github.com/MUST-Quick-Fry/Face-Recognition-Sign-In-System/pull/10#issue-1052853864)
 
 
 ### Dynamic White-Box Testing 
