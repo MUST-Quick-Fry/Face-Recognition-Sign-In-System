@@ -74,7 +74,7 @@ def faceRecognize(sql3_helper, unknown_path, dir):
     print("encode unknown")
 
     # 从数据库中获取已注册的用户脸部图片
-    sql_command = "SELECT * FROM Student"
+    sql_command = "SELECT * FROM tasks_student"
 
     all_result = sql3_helper.query(cmd=sql_command)
     print(all_result)

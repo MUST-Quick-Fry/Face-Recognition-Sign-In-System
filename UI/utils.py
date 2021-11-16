@@ -6,10 +6,12 @@ from UI.registration import *
 import matplotlib.pyplot as plt
 import numpy as np
 import re
+import time_recorder
+
 
 dir = 'faceData'
 sql3_helper = SQLITE3_Helper()
-today = "2021-10-25"
+today = time_recorder.get_today()
 
 class RegistrationWindow(QtWidgets.QDialog,Ui_registrationDialog):
     def __init__(self):
@@ -66,11 +68,11 @@ class RegistrationWindow(QtWidgets.QDialog,Ui_registrationDialog):
             # sql = "insert into record values (null,'{}',0)".format(userName)
             # result1 = dbHelper.execute(sql, None)
 
-            testsql = "SELECT * FROM Student WHERE sid = '{}'".format(userID)
+            testsql = "SELECT * FROM tasks_student WHERE sid = '{}'".format(userID)
             if len(sql3_helper.query(cmd=testsql)) == 0:
 
                 try:
-                    sql = "INSERT INTO Student VALUES ('" + userID + "','" + userName + "','" + userImg + "')"
+                    sql = "INSERT INTO tasks_student VALUES ('" + userID + "','" + userName + "','" + userImg + "')"
                     sql3_helper.insert(cmd=sql)
                     QMessageBox.information(self, "Tip", "Registration Succeed !")
                     print("Insert successfully")
@@ -122,14 +124,19 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 courseID = 1
 
                 # check if the student has signed in before
-                sqlcmd = "select COUNT(*) from SignIn WHERE Date(Time) = '" + str(today) + "' AND Sid = '" + str(userID) + "'"
+                sqlcmd = "SELECT COUNT(*) FROM tasks_signin WHERE Date(time) = '" + str(today) + "' AND sid_id = '" + str(userID) + "'"
                 out = sql3_helper.query(sqlcmd)
 
                 if int(out[0][0]) > 0:
                     QMessageBox.information(self, "Warning", "Hello {}, you have already signed in !".format(userName))
 
                 else:
-                    sql = "INSERT INTO SignIn (Sid,Cid) VALUES('{}',{})".format(userID, courseID)
+                    print(time_recorder.get_time_record())
+                    sqlcmd = "SELECT COUNT(*) FROM tasks_signin"
+                    total = sql3_helper.query(sqlcmd)
+                    print(int(total[0][0]+1))
+
+                    sql = "INSERT INTO tasks_signin VALUES (" + str(total[0][0]+1) + "," + str(courseID) + ",'" + userID + "','" + time_recorder.get_time_record() + "')"
                     sql3_helper.insert(sql)
                     QMessageBox.information(self, "Tip", "Sign in succeed !\nWelcome {}".format(userName))
             else:
@@ -141,15 +148,15 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def execDrawPlot(self):
 
         # pie plot about attendance & absence rate
-        sqlcmd = "SELECT COUNT(DISTINCT Sid) from SignIn"
+        sqlcmd = "SELECT COUNT(*) FROM tasks_signin WHERE Date(time) = '" + str(today) + "'"
         re = sql3_helper.query(sqlcmd)
 
         attend = re[0][0]
 
-        sqlcmd = "SELECT COUNT(DISTINCT Sid) from Student"
-        re = sql3_helper.query(sqlcmd)
+        sqlcmd = "SELECT COUNT(*) FROM tasks_student"
+        re2 = sql3_helper.query(sqlcmd)
 
-        absence = re[0][0] - attend
+        absence = re2[0][0] - attend
 
         y = np.array([attend, absence])
 
@@ -162,49 +169,48 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         plt.title("Attendance & Absence Rate")
         plt.show()
 
-
         # bar plot about time record
-        sqlcmd = "SELECT * FROM SignIn"
-        re = sql3_helper.query(sqlcmd)
-
-        # print(re)
+        sqlcmd = "SELECT * FROM tasks_signin"
+        re1 = sql3_helper.query(sqlcmd)
 
         # get time record
         record = []
-        for each in re:
+        for each in re1:
             if list(each)[3].split()[0] == today:
                 s = list(each)[3].split()[1]
                 record.append(str(s.split(":")[0]) + ":" + str(s.split(":")[1]))
 
-        # print(record)
+        if len(record) == 0:
+            QMessageBox.information(self, "Tips", "No record!")
 
-        dic = {}
-        for key in record:
-            dic[key] = dic.get(key, 0) + 1
+        else:
+            dic = {}
+            for key in record:
+                dic[key] = dic.get(key, 0) + 1
 
-        # print(dic)
+            # print(dic)
 
-        time = list(dic)
-        num = list(dic.values())
-        # print(time)
-        # print(num)
+            time = list(dic)
+            num = list(dic.values())
+            # print(time)
+            # print(num)
 
-        # set parameters
-        data_num = len(time)
-        data_max = max(num)
-        fig_width = 8 + 0.5 * data_num
-        fig_height = 4 + 0.5 * data_num
+            # set parameters
+            data_num = len(time)
+            data_max = max(num)
+            fig_width = 8 + 0.5 * data_num
+            fig_height = 4 + 0.5 * data_num
 
-        # draw plot
-        plt.figure(figsize=(fig_width, fig_height))
-        plt.title("Sign-in Record on " + str(today) + "          Total students: " + str(len(num)))
-        plt.xlabel("Sign-in Time")
-        plt.ylabel("Number of Students")
-        plt.ylim(0, 1.2 * data_max)
-        plt.yticks([])
-        plt.bar(time, num, color=["#707070", "#949494", "#B8B8B8", "#DCDCDC"], width=0.4)
+            # draw plot
+            plt.figure(figsize=(fig_width, fig_height))
+            plt.title("Sign-in Record on " + str(today) + "          Total students: " + str(len(num)))
+            plt.xlabel("Sign-in Time")
+            plt.ylabel("Number of Students")
+            plt.ylim(0, 1.2 * data_max)
+            plt.yticks([])
+            plt.bar(time, num, color=["#707070", "#949494", "#B8B8B8", "#DCDCDC"], width=0.4)
 
-        for a, b in zip(time, num):
-            plt.text(a, b + 0.02, '%.0f' % b, ha='center', va='bottom', fontsize=11)
+            for a, b in zip(time, num):
+                plt.text(a, b + 0.02, '%.0f' % b, ha='center', va='bottom', fontsize=11)
 
-        plt.show()
+            plt.show()

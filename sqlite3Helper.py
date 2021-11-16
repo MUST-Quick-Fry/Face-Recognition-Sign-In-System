@@ -20,7 +20,7 @@ class SQLITE3_Helper:
 
     def display(self):
         with sqlite3.connect(self.db) as con:
-            sqlstr = "SELECT * FROM Student"
+            sqlstr = "SELECT * FROM tasks_student"
             mycursor = con.cursor()
             mycursor.execute(sqlstr)
 
