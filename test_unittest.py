@@ -113,7 +113,7 @@ class TestUIMainWindow(unittest.TestCase):
         QTest.mouseClick(self.window.identificationButton,Qt.LeftButton)
     
     def test_execDrawPlot(self):
-        QTest.mouseClick(self.window.drawPlotButton,Qt.LeftButton)
+        QTest.mouseClick(self.window.printButton,Qt.LeftButton)
     
         
     def tearDown(self):
