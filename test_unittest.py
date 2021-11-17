@@ -109,6 +109,13 @@ class TestUIMainWindow(unittest.TestCase):
             mock_window.return_value.exec_()
             mock_window.assert_called_once()
     
+    def test_execIdentification(self):
+        QTest.mouseClick(self.window.identificationButton,Qt.LeftButton)
+    
+    def test_execDrawPlot(self):
+        QTest.mouseClick(self.window.drawPlotButton,Qt.LeftButton)
+    
+        
     def tearDown(self):
         self.window.close()
         self.app.quit()

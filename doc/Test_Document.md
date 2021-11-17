@@ -61,50 +61,31 @@ Static Testing Tool
 In order to fix static logic bugs and identify code styles, including naming regulation, import order and variable definition, we use the tool -- 
 [pylint](https://github.com/PyCQA/pylint) for simple the censor among members.  
 
-For example, the testing result about [faceHelper.py](../faceHelper.py) :
+For example, the testing result about [showplot.py](../showplot.py) :
 ```text
-************* Module faceHelper
-faceHelper.py:40:0: C0325: Unnecessary parens after 'while' keyword (superfluous-parens)
-faceHelper.py:1:0: C0103: Module name "faceHelper" doesn't conform to snake_case naming style (invalid-name)
-faceHelper.py:1:0: C0114: Missing module docstring (missing-module-docstring)
-faceHelper.py:8:0: C0116: Missing function or method docstring (missing-function-docstring)
-faceHelper.py:12:10: E1101: Module 'cv2' has no 'CascadeClassifier' member (no-member)
-faceHelper.py:14:11: E1101: Module 'cv2' has no 'cvtColor' member (no-member)
-faceHelper.py:14:31: E1101: Module 'cv2' has no 'COLOR_BGR2GRAY' member (no-member)
-faceHelper.py:22:14: E1101: Module 'cv2' has no 'CASCADE_SCALE_IMAGE' member (no-member)
-faceHelper.py:26:9: C0103: Variable name "x" doesn't conform to snake_case naming style (invalid-name)
-faceHelper.py:26:12: C0103: Variable name "y" doesn't conform to snake_case naming style (invalid-name)
-faceHelper.py:26:15: C0103: Variable name "w" doesn't conform to snake_case naming style (invalid-name)
-faceHelper.py:26:18: C0103: Variable name "h" doesn't conform to snake_case naming style (invalid-name)
-faceHelper.py:28:8: E1101: Module 'cv2' has no 'rectangle' member (no-member)
-faceHelper.py:33:0: C0103: Function name "faceCapture" doesn't conform to snake_case naming style (invalid-name)
-faceHelper.py:33:0: C0116: Missing function or method docstring (missing-function-docstring)
-faceHelper.py:47:12: W0621: Redefining name 'faceCapture' from outer scope (line 33) (redefined-outer-name)
-faceHelper.py:34:10: E1101: Module 'cv2' has no 'VideoCapture' member (no-member)
-faceHelper.py:44:14: E1101: Module 'cv2' has no 'waitKey' member (no-member)
-faceHelper.py:45:11: C0121: Comparison 'ret == True' should be 'ret is True' if checking for the singleton value True, or 'ret' if testing for truthiness (singleton-comparison)
-faceHelper.py:47:12: C0103: Variable name "faceCapture" doesn't conform to snake_case naming style (invalid-name)
-faceHelper.py:48:12: E1101: Module 'cv2' has no 'imshow' member (no-member)
-faceHelper.py:50:16: R1723: Unnecessary "elif" after "break" (no-else-break)
-faceHelper.py:51:24: C0103: Variable name "x1" doesn't conform to snake_case naming style (invalid-name)
-faceHelper.py:51:28: C0103: Variable name "y1" doesn't conform to snake_case naming style (invalid-name)
-faceHelper.py:51:32: C0103: Variable name "x2" doesn't conform to snake_case naming style (invalid-name)
-faceHelper.py:51:36: C0103: Variable name "y2" doesn't conform to snake_case naming style (invalid-name)
-faceHelper.py:54:20: E1101: Module 'cv2' has no 'imencode' member (no-member)
-faceHelper.py:63:4: E1101: Module 'cv2' has no 'destroyAllWindows' member (no-member)
-faceHelper.py:67:0: C0103: Function name "faceRecognize" doesn't conform to snake_case naming style (invalid-name)
-faceHelper.py:67:0: C0116: Missing function or method docstring (missing-function-docstring)
-faceHelper.py:67:45: W0622: Redefining built-in 'dir' (redefined-builtin)
-faceHelper.py:67:0: R0914: Too many local variables (16/15) (too-many-locals)
-faceHelper.py:90:4: C0200: Consider using enumerate instead of iterating with range and len (consider-using-enumerate)
-faceHelper.py:120:11: W0703: Catching too general exception Exception (broad-except)
-faceHelper.py:117:8: C0103: Variable name "minIndex" doesn't conform to snake_case naming style (invalid-name)
-faceHelper.py:120:4: C0103: Variable name "e" doesn't conform to snake_case naming style (invalid-name)
-faceHelper.py:3:0: C0411: standard import "import os" should be placed before "import cv2" (wrong-import-order)
-faceHelper.py:4:0: C0411: third party import "import numpy as np" should be placed before "import face_recognition.api as face_recognition" (wrong-import-order)
+************* Module showplot
+showplot.py:75:0: C0304: Final newline missing (missing-final-newline)
+showplot.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+showplot.py:7:0: C0116: Missing function or method docstring (missing-function-docstring)
+showplot.py:9:4: C0103: Variable name "re" doesn't conform to snake_case naming style (invalid-name)
+showplot.py:12:4: C0103: Variable name "y" doesn't conform to snake_case naming style (invalid-name)
+showplot.py:24:0: C0116: Missing function or method docstring (missing-function-docstring)
+showplot.py:24:0: R0914: Too many local variables (16/15) (too-many-locals)
+showplot.py:26:4: C0103: Variable name "re" doesn't conform to snake_case naming style (invalid-name)
+showplot.py:34:12: C0103: Variable name "s" doesn't conform to snake_case naming style (invalid-name)
+showplot.py:66:8: C0103: Variable name "a" doesn't conform to snake_case naming style (invalid-name)
+showplot.py:66:11: C0103: Variable name "b" doesn't conform to snake_case naming style (invalid-name)
+showplot.py:67:30: C0209: Formatting a regular string which could be a f-string (consider-using-f-string)
 
+------------------------------------------------------------------
+Your code has been rated at 7.14/10 (previous run: 7.14/10, +0.00)
+```
+
+after modifying :
+```text
+************* Module showplot
 --------------------------------------------------------------------
-Your code has been rated at -0.40/10 (previous run: -0.40/10, +0.00)
+Your code has been rated at 10.00/10 (previous run: 10.00/10, +0.00)
 ```
 
 Walkthrough :
@@ -217,8 +198,10 @@ We use **White Box Test** to test 3 different and critical functions in [`UI/uti
     | Test case 10 | opened = True <br> os.path.exists(unknown_path) = False <br> success = False <br>                                           | Error Exception! |
 
 ## Unit Testing
-We use [unittest](https://docs.python.org/3/library/unittest.html) from **Python Package Index**, the specific codes can referred in [test_unittest.py](../test_unittest.py)  
+Actually, it is necessary to create a test suite a load the test cases in previous testing work. 
+We use [unittest](https://docs.python.org/3/library/unittest.html) from **Python Package Index**, the specific codes can referred in [test_unittest.py](../test_unittest.py). 
 
 ## Automatic Testing
 **Selenium**
+
 We use [**Github Action**](https://docs.github.com/en/actions) to
