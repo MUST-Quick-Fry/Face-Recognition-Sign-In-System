@@ -131,12 +131,13 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     QMessageBox.information(self, "Warning", "Hello {}, you have already signed in !".format(userName))
 
                 else:
-                    print(time_recorder.get_time_record())
+                    # print(time_recorder.get_time_record())
                     sqlcmd = "SELECT COUNT(*) FROM tasks_signin"
                     total = sql3_helper.query(sqlcmd)
-                    print(int(total[0][0]+1))
+                    # print(int(total[0][0]+1))
 
-                    sql = "INSERT INTO tasks_signin VALUES (" + str(total[0][0]+1) + "," + str(courseID) + ",'" + userID + "','" + time_recorder.get_time_record() + "')"
+                    sql = "INSERT INTO tasks_signin VALUES (" + str(total[0][0]+1) + "," + str(courseID) + ",'" + \
+                          userID + "','" + time_recorder.get_time_record() + "')"
                     sql3_helper.insert(sql)
                     QMessageBox.information(self, "Tip", "Sign in succeed !\nWelcome {}".format(userName))
             else:
@@ -166,19 +167,18 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 explode=(0.25, 0),
                 autopct='%.2f%%',
                 )
-        plt.title("Attendance & Absence Rate")
+        plt.title("Attendance & Absence Rate", pad=30)
         plt.show()
 
         # bar plot about time record
-        sqlcmd = "SELECT * FROM tasks_signin"
+        sqlcmd = "SELECT * FROM tasks_signin WHERE Date(time) = '" + str(today) + "'"
         re1 = sql3_helper.query(sqlcmd)
 
         # get time record
         record = []
         for each in re1:
-            if list(each)[3].split()[0] == today:
-                s = list(each)[3].split()[1]
-                record.append(str(s.split(":")[0]) + ":" + str(s.split(":")[1]))
+            s = list(each)[3].split()[1]
+            record.append(str(s.split(":")[0]) + ":" + str(s.split(":")[1]))
 
         if len(record) == 0:
             QMessageBox.information(self, "Tips", "No record!")
