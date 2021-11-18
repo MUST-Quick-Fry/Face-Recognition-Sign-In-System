@@ -132,14 +132,19 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
                 else:
                     # print(time_recorder.get_time_record())
-                    sqlcmd = "SELECT COUNT(*) FROM tasks_signin"
-                    total = sql3_helper.query(sqlcmd)
-                    # print(int(total[0][0]+1))
+                    if time_recorder.is_class_time("11:00:00", "12:50:00"):
 
-                    sql = "INSERT INTO tasks_signin VALUES (" + str(total[0][0]+1) + "," + str(courseID) + ",'" + \
-                          userID + "','" + time_recorder.get_time_record() + "')"
-                    sql3_helper.insert(sql)
-                    QMessageBox.information(self, "Tip", "Sign in succeed !\nWelcome {}".format(userName))
+                        sqlcmd = "SELECT COUNT(*) FROM tasks_signin"
+                        total = sql3_helper.query(sqlcmd)
+                        # print(int(total[0][0]+1))
+
+                        sql = "INSERT INTO tasks_signin VALUES (" + str(total[0][0]+1) + "," + str(courseID) + ",'" + \
+                              userID + "','" + time_recorder.get_time_record() + "')"
+                        sql3_helper.insert(sql)
+                        QMessageBox.information(self, "Tip", "Sign in succeed !\nWelcome {}".format(userName))
+
+                    else:
+                        QMessageBox.information(self, "Warning", "The course is not open now, sign-in is unavailable !")
             else:
                 QMessageBox.information(self, "Warning", "Sign in fail ! \n{}\nWill Restart Automatically".format(msg))
 
