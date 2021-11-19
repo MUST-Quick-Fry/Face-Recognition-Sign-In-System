@@ -74,6 +74,10 @@ Review the requirement:
    Besides, each layer itself can use Bottom-top design to realize reusability of components. For example, make decisions about reusable utilities including framework for output and individual algorithms for face cognition. 
    ![](img/layer.svg)
 
+   For the specifier Website architecture, it will be established by **Django** as shown :
+   ![](img/MVC_layer.svg)
+
+
 - Client-Service and distributed architectural pattern 
   
    it is simply to separate the client component and service component
