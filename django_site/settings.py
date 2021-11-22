@@ -121,11 +121,11 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Setting LOGO
-SIMPLEUI_LOGO = 'https://www.must.edu.mo/images/logo_new.png'
+SIMPLEUI_LOGO = ""
 
 # Customize menu
 SIMPLEUI_CONFIG = {
-    'menu_display': ['Control Panel','Task Management', 'Authentication'],
+    'menu_display': ['Control Panel','Database Management', 'Authentication'],
 
     'dynamic': False,
     'menus': [
@@ -164,7 +164,7 @@ SIMPLEUI_CONFIG = {
             ]
         },
         {
-            'name': 'Task Management',
+            'name': 'Database Management',
             'icon': 'fa fa-th-list',
             'models': [
                 {
@@ -195,12 +195,12 @@ SIMPLEUI_CONFIG = {
                     'url': '/admin/tasks/takeclass',
                     'icon': 'fa fa-tasks'
                 },
-                {
-                    'name': 'Task list',
-                    # url name method :'/admin/应用名小写/模型名小写/'
-                    'url': '/admin/tasks/task/',
-                    'icon': 'fa fa-tasks'
-                }
+                # {
+                #     'name': 'Task list',
+                #     # url name method :'/admin/应用名小写/模型名小写/'
+                #     'url': '/admin/tasks/task/',
+                #     'icon': 'fa fa-tasks'
+                # }
 
             ]
         },
@@ -209,7 +209,7 @@ SIMPLEUI_CONFIG = {
 
 # The name actually displayed on the menu
 SIMPLEUI_ICON = {
-    'Task Management': 'fas fa-tasks',
+    'Database Management': 'fas fa-tasks',
     'Tasks': 'fas fa-th-list',
 }
 

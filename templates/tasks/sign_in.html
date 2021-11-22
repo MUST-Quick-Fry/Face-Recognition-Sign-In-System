@@ -4,6 +4,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Sign-In Record</title>
+
+    <link rel="icon" href="https://www.must.edu.mo/templates/newui/favicon.ico">
+
     <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,7 +24,7 @@
         <select id="dropdown">
             {% for course in all_course %}
                 <option id="name" value="{{ course.cid }}">
-                    Weekday {{ course.weekday }} : {{ course.name }}
+                     {{ course.start_time }}-{{ course.finish_time }} Weekday{{ course.weekday }}  : {{ course.name }}
                 </option>
             {% endfor %}
         </select>

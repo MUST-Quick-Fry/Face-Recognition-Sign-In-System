@@ -15,43 +15,69 @@ admin.site.register(Task)
 @admin.register(Course)
 class CourseAdmin(admin.ModelAdmin):
     # display para
-    list_display = ('cid','name','weekday','start_time','finish_time')
+    list_display = ['cid', 'name', 'weekday', 'start_time', 'finish_time']
     list_per_page = 10
-    search_fields = ('cid','name')
+    search_fields = ('name',)
     actions_on_top = True
 
 
 @admin.register(Student)
 class StudentAdmin(admin.ModelAdmin):
     # display para
-    list_display = ('sid','stu_name','img_path')
+    list_display = ['sid', 'stu_name', 'img_path']
     list_per_page = 10
-    search_fields = ('sid','stu_name')
+    search_fields = ('sid',)
     actions_on_top = True
 
 
 @admin.register(Teacher)
 class TeacherAdmin(admin.ModelAdmin):
     # display para
-    list_display = ('name','account','pwd')
+    list_display = ['name', 'account', 'pwd']
     list_per_page = 10
-    search_fields = ('tid','name')
+    search_fields = ('tid', 'name')
     actions_on_top = True
 
 
 @admin.register(SignIn)
 class SignInAdmin(admin.ModelAdmin):
     # display para
-    list_display = ('sid','cid','time')
+    list_display = ['student_id', 'student_name', 'course_name', 'time']
     list_per_page = 10
-    search_fields = ('sid','time')
+    search_fields = ('sid__sid', 'cid__name')
     actions_on_top = True
+
+    def course_name(self, obj):
+        return "weekday {} : {}".format(obj.cid.weekday, obj.cid.name)
+
+    def student_name(self, obj):
+        return obj.sid.stu_name
+
+    def student_id(self, obj):
+        return obj.sid.sid
+
+    student_id.admin_order_field = 'sid__sid'
+    student_name.admin_order_field = 'sid__stu_name'
+    course_name.admin_order_field = 'cid__name'
 
 
 @admin.register(TakeClass)
 class TakeClassAdmin(admin.ModelAdmin):
     # display para
-    list_display = ('sid','cid')
+    list_display = ['student_id', 'student_name', 'course_name']
     list_per_page = 10
-    search_fields = ('sid','cid')
+    search_fields = ('sid__sid', 'cid__name', 'sid__name')
     actions_on_top = True
+
+    def course_name(self, obj):
+        return obj.cid.name
+
+    def student_name(self, obj):
+        return obj.sid.stu_name
+
+    def student_id(self, obj):
+        return obj.sid.sid
+
+    student_id.admin_order_field = 'sid__sid'
+    student_name.admin_order_field = 'sid__stu_name'
+    course_name.admin_order_field = 'cid__name'
