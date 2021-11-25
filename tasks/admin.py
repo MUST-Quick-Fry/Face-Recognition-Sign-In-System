@@ -26,7 +26,7 @@ class StudentAdmin(admin.ModelAdmin):
     # display para
     list_display = ['sid', 'stu_name', 'img_path']
     list_per_page = 10
-    search_fields = ('sid',)
+    search_fields = ('sid', 'stu_name')
     actions_on_top = True
 
 
@@ -44,7 +44,7 @@ class SignInAdmin(admin.ModelAdmin):
     # display para
     list_display = ['student_id', 'student_name', 'course_name', 'time']
     list_per_page = 10
-    search_fields = ('sid__sid', 'cid__name')
+    search_fields = ('sid__sid', 'sid__stu_name','cid__name',)
     actions_on_top = True
 
     def course_name(self, obj):
@@ -66,7 +66,7 @@ class TakeClassAdmin(admin.ModelAdmin):
     # display para
     list_display = ['student_id', 'student_name', 'course_name']
     list_per_page = 10
-    search_fields = ('sid__sid', 'cid__name', 'sid__name')
+    search_fields = ('sid__sid', 'cid__name', 'sid__stu_name')
     actions_on_top = True
 
     def course_name(self, obj):

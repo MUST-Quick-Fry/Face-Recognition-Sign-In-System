@@ -26,12 +26,12 @@ class Course(models.Model):
     cid = models.BigAutoField(primary_key = True)
     tid = models.ForeignKey('Teacher', on_delete = models.CASCADE)
     name = models.CharField(max_length = 50)
-    weekday = models.IntegerField()
+    weekday = models.IntegerField(choices = zip(range(1,8),range(1,8)),blank=True)
     start_time = models.TimeField()
     finish_time = models.TimeField()
 
-    # def __str__(self):
-    #     return self.name
+    def __str__(self):
+        return self.name
 
 
 class Student(models.Model):
@@ -39,8 +39,8 @@ class Student(models.Model):
     stu_name = models.CharField(max_length = 50)
     img_path = models.CharField(max_length = 50, unique = True)
 
-    # def __str__(self):
-    #     return self.sid
+    def __str__(self):
+        return "{}({})".format(self.stu_name,self.sid)
 
 
 class Teacher(models.Model):
@@ -49,8 +49,8 @@ class Teacher(models.Model):
     account = models.CharField(max_length = 50, unique = True)
     pwd = models.CharField(max_length = 50)
 
-    # def __str__(self):
-    #     return self.name
+    def __str__(self):
+        return self.name
 
 
 class SignIn(models.Model):
