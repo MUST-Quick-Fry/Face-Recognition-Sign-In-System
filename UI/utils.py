@@ -95,9 +95,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def execRegistration(self):
         if self.registrationButton.clicked:
-            registrationDialog = RegistrationWindow()
-            registrationDialog.show()
-            registrationDialog.exec_()
+            self.registrationDialog = RegistrationWindow()
+            self.registrationDialog.show()
+            self.registrationDialog.exec_()
 
     def execIdentification(self):
         if self.identificationButton.clicked:
