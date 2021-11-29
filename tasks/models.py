@@ -31,7 +31,7 @@ class Course(models.Model):
     finish_time = models.TimeField()
 
     def __str__(self):
-        return self.name
+        return "{}(weekday:{})".format(self.name,self.weekday)
 
 
 class Student(models.Model):
