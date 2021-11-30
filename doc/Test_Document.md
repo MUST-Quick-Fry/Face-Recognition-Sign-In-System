@@ -99,11 +99,11 @@ We use **White Box Test** to test 3 different and critical functions in [`UI/uti
     
     Control FLow Graph:
     
-    ![](img/take_photo.svg)
+    ![](img/take_photo_whilt.svg)
 
     Loop Complexity：
 
-    The loop complexity is 7.  
+    The loop complexity is 10.  
 
 
     Independent Path：
@@ -112,10 +112,9 @@ We use **White Box Test** to test 3 different and critical functions in [`UI/uti
     2. 20 -> 22 -> 25 -> 26 -> 29 -> 30 -> 34 -> 35 -> 36-42 -> 43 -> 44-45 -> 48
     3. 20 -> 22 -> 25 -> 26 -> 29 -> 30 -> 34 -> 35 -> 36-42 -> 43 -> 48
     4. 20 -> 22 -> 25 -> 29 -> 30 -> 31 -> 48
-    5. 20 -> 22 -> 25 -> 26 -> 29 -> 30 -> 34 -> 35 -> 48
+
     6. 20 -> 22 -> 25 -> 29 -> 30 -> 34 -> 35 -> 36-42 -> 43 -> 44-45 -> 48
     7. 20 -> 22 -> 25 -> 29 -> 30 -> 34 -> 35 -> 36-42 -> 43 -> 48
-    8. 20 -> 22 -> 25 -> 29 -> 30 -> 34 -> 35 -> 48
     9. 20 -> 22 -> 23 -> 48
     10. 20 -> 22 -> 47 -> 48
 
@@ -127,12 +126,10 @@ We use **White Box Test** to test 3 different and critical functions in [`UI/uti
     | Test case 2  | userID = 1809853zi0110099<br> os.path.exists(dir) = False<br> opened = True<br> os.path.exists(img_path)=True<br> unkown_encoding = False<br> | Error Exception |
     | Test case 3  | userID = 1809853zi0110099<br> os.path.exists(dir) = False<br> opened = True<br> os.path.exists(img_path)=True<br> unkown_encoding = True<br>  | Success         |
     | Test case 4  | userID = 1809853zi0110099<br> os.path.exists(dir) = True<br> opened = False<br>                                                       | Error Exception |
-    | Test case 5  | userID = 1809853zi0110099<br> os.path.exists(dir) = False<br> opened = True<br> os.path.exists(img_path)=False <br>                       | Error Exception |
-    | Test case 6  | userID = 1809853zi0110099<br> os.path.exists(dir) = True<br> opened = True<br> os.path.exists(img_path)=True<br> unknown_encoding = False<br> | Error Exception |
-    | Test case 7  | userID = 1809853zi0110099<br> os.path.exists(dir) = True<br> opened = True<br> os.path.exists(img_path)=True<br> unknown_encoding = True<br>  | Success!        |
-    | Test case 8  | userID = 1809853zi0110099<br> os.path.exists(dir) = True<br> opened = True<br> os.path.exists(img_path)=False <br>                        | Error Exception |
-    | Test case 9  | userID = ""                                                                                                               | Error Exception |
-    | Test case 10 | userID = "hahahahaha"                                                                                                     | Error Exception                |
+    | Test case 5  | userID = 1809853zi0110099<br> os.path.exists(dir) = True<br> opened = True<br> os.path.exists(img_path)=True<br> unknown_encoding = False<br> | Error Exception |
+    | Test case 6  | userID = 1809853zi0110099<br> os.path.exists(dir) = True<br> opened = True<br> os.path.exists(img_path)=True<br> unknown_encoding = True<br>  | Success!        |
+    | Test case 7  | userID = ""                                                                                                               | Error Exception |
+    | Test case 8 | userID = "hahahahaha"                                                                                                     | Error Exception                |
 
 2. `addUser` func
 
@@ -169,37 +166,44 @@ We use **White Box Test** to test 3 different and critical functions in [`UI/uti
 
     Loop Complexity:
 
-    The loop complexity is 6.
+    The loop complexity is 14.
 
-    Independent Path:
-    1. 102 -> 103 -> 104 -> 140
-    2. 102 -> 103 -> 105 -> 106-108 -> 109 -> 110-111 -> 112 -> 113 -> 116 -> 118 -> 119 -> 120-127 -> 128 -> 129-130 -> 140
-    3. 102 -> 103 -> 105 -> 106-108 -> 109 -> 110-111 -> 112 -> 113 -> 116 -> 118 -> 119 -> 120-127 -> 128 -> 132-134 -> 140
-    4. 102 -> 103 -> 105 -> 106-108 -> 109 -> 110-111 -> 112 -> 113 -> 116 -> 118 -> 119 -> 136-139 -> 140
-    5. 102 -> 103 -> 105 -> 106-108 -> 109 -> 110-111 -> 112 -> 115 -> 116 -> 118 -> 119 -> 120-127 -> 128 -> 129-130 -> 140
-    6. 102 -> 103 -> 105 -> 106-108 -> 109 -> 110-111 -> 112 -> 115 -> 116 -> 118 -> 119 -> 120-127 -> 128 -> 132-134 -> 140
-    7. 102 -> 103 -> 105 -> 106-108 -> 109 -> 110-111 -> 112 -> 115 -> 116 -> 118 -> 119 -> 136-139 -> 140
-    8. 102 -> 103 -> 105 -> 106-108 -> 109 -> 118 -> 119 -> 120-127 -> 128 -> 129-130 -> 140
-    9. 102 -> 103 -> 105 -> 106-108 -> 109 -> 118 -> 119 -> 120-127 -> 128 -> 132-134 -> 140 
-    10. 102 -> 103 -> 105 -> 106-108 -> 109 -> 118 -> 119 -> 136-139 -> 140
+1. 102 -> 103 -> 153
+2. 102 -> 103 -> 105 -> 106 -> 153
+3. 102 -> 103 -> 105 -> 107-108 -> 109 -> 110-111 -> 112 -> 113 -> 116 -> 119 -> 120-127 -> 128 -> 129-130 -> 153
+4. 102 -> 103 -> 105 -> 107-108 -> 109 -> 110-111 -> 112 -> 113 -> 116 -> 119 -> 120-127 -> 128 -> 132-134 -> 146-147 -> 153
+5. 102 -> 103 -> 105 -> 107-108 -> 109 -> 110-111 -> 112 -> 113 -> 116 -> 119 -> 120-127 -> 128 -> 132-134 -> 136-145 -> 153
+6. 102 -> 103 -> 105 -> 107-108 -> 109 -> 110-111 -> 112 -> 115 -> 116 -> 119 -> 149-152 -> 153
+7. 102 -> 103 -> 105 -> 107-108 -> 109 -> 110-111 -> 112 -> 115 -> 116 -> 119 -> 120-127 -> 128 -> 129-130 -> 153
+8. 102 -> 103 -> 105 -> 107-108 -> 109 -> 110-111 -> 112 -> 115 -> 116 -> 119 -> 120-127 -> 128 -> 132-134 -> 146-147 -> 153
+9. 102 -> 103 -> 105 -> 107-108 -> 109 -> 110-111 -> 112 -> 115 -> 116 -> 119 -> 120-127 -> 128 -> 132-134 -> 136-145 -> 153
+10. 102 -> 103 -> 105 -> 107-108 -> 109 -> 110-111 -> 112 -> 115 -> 116 -> 119 -> 149-152 -> 153
+11. 102 -> 103 -> 105 -> 107-108 -> 118 -> 119 -> 120-127 -> 128 -> 129-130 -> 153
+12. 102 -> 103 -> 105 -> 107-108 -> 118 -> 119 -> 120-127 -> 128 -> 132-134 -> 146-147 -> 153
+13. 102 -> 103 -> 105 -> 107-108 -> 118 -> 119 -> 120-127 -> 128 -> 132-134 -> 136-145 -> 153
+14. 102 -> 103 -> 105 -> 107-108 -> 118 -> 119 -> 149-152 -> 153
 
-    Test Cases
-    |              | input                                                                                                                       | expected input   |
-    |--------------|-----------------------------------------------------------------------------------------------------------------------------|------------------|
-    | Test case 1  | opened = False                                                                                                              | Error Exception! |
-    | Test case 2  | opened = True <br> os.path.exists(unknown_path) = True <br> self.count = 0 <br> success = True <br> int(out[0][0]) = 1 <br> | Error Exception! |
-    | Test case 3  | opened = True <br> os.path.exists(unknown_path) = True <br> self.count = 0 <br> success = True <br> int(out[0][0]) = 0 <br> | Success!         |
-    | Test case 4  | opened = True <br> os.path.exists(unknown_path) = True <br> self.count = 0 <br> success = False <br>                        | Error Exception! |
-    | Test case 5  | opened = True <br> os.path.exists(unknown_path) = True <br> self.count = 6 <br> success = True <br> int(out[0][0]) = 0 <br> | Success!         |
-    | Test case 6  | opened = True <br> os.path.exists(unknown_path) = True <br> self.count = 6 <br> success = True <br> int(out[0][0]) = 1 <br> | Error Exception! |
-    | Test case 7  | opened = True <br> os.path.exists(unknown_path) = True <br> self.count = 6 <br> success = False <br>                        | Error Exception! |
-    | Test case 8  | opened = True <br> os.path.exists(unknown_path) = Flase <br> success = True <br> int(out[0][0]) = 1 <br>                    | Error Exception  |
-    | Test case 9  | opened = True <br> os.path.exists(unknown_path) = False <br> success = True <br> int(out[0][0]) = 0 <br>                    | Success!         |
-    | Test case 10 | opened = True <br> os.path.exists(unknown_path) = False <br> success = False <br>                                           | Error Exception! |
+
+|              | input                                                                                                                                                               | expected input   |
+|--------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------|
+| Test case 1  | self.identificationButton.click = False                                                                                                                             | Error Exception! |
+| Test case 2  | opened = False                                                                                                                                                      | Error Exception! |
+| Test case 3  | opened = True <br> os.path.exists(unknown_path) = True <br> self.count = 0 <br> success = True <br> int(out[0][0]) = 1 <br>                                         | Error Exception! |
+| Test case 4  | opened = True <br> os.path.exists(unknown_path) = True <br> self.count = 0 <br> success = True <br> int(out[0][0]) = 0 <br> time_recorder.is_class_time = True<br>  | Success!         |
+| Test case 5  | opened = True <br> os.path.exists(unknown_path) = True <br> self.count = 0 <br> success = True <br> int(out[0][0]) = 0 <br> time_recorder.is_class_time = False<br> | Error Exception! |
+| Test case 6  | opened = True <br> os.path.exists(unknown_path) = True <br> self.count = 0 <br> success = False <br>                                                                | Error Exception! |
+| Test case 7  | opened = True <br> os.path.exists(unknown_path) = True <br> self.count = 6 <br> success = True <br> int(out[0][0]) = 0 <br> time_recorder.is_class_time = True<br>  | Success!         |
+| Test case 8  | opened = True <br> os.path.exists(unknown_path) = True <br> self.count = 6 <br> success = True <br> int(out[0][0]) = 0 <br> time_recorder.is_class_time = False<br> | Error Exception! |
+| Test case 9  | opened = True <br> os.path.exists(unknown_path) = True <br> self.count = 6 <br> success = True <br> int(out[0][0]) = 1 <br>                                         | Error Exception! |
+| Test case 10 | opened = True <br> os.path.exists(unknown_path) = True <br> self.count = 6 <br> success = False <br>                                                                | Error Exception! |
+| Test case 11 | opened = True <br> os.path.exists(unknown_path) = Flase <br> success = True <br> int(out[0][0]) = 1 <br>                                                            | Error Exception! |
+| Test case 12 | opened = True <br> os.path.exists(unknown_path) = False <br> success = True <br> int(out[0][0]) = 0 <br> time_recorders.is_class_name = True<br>                    | Success!         |
+| Test case 13 | opened = True <br> os.path.exists(unknown_path) = False <br> success = True <br> int(out[0][0]) = 0 <br> time_recorders.is_class_name = False<br>                   | Error Exception! |
+| Test case 14 | opened = True <br> os.path.exists(unknown_path) = False <br> success = False <br>                                                                                   | Error Exception! |
 
 ## Unit Testing
 Actually, it is necessary to create a test suite a load the test cases in previous testing work. 
-We use [unittest](https://docs.python.org/3/library/unittest.html) from **Python Package Index**, the specific codes can referred in [test_unittest.py](../test_unittest.py). 
+We use [unittest](https://docs.python.org/3/library/unittest.html) from **Python Package Index**, the specific codes can referred in [test_unittest.py](../Test/test_unittest.py). 
 
 ## Automatic Testing
 **Selenium**
