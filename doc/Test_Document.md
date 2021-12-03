@@ -101,6 +101,31 @@ We use **White Box Test** to test 3 different and critical functions in [`UI/uti
     
     ![](img/take_photo_whilt.svg)
 
+   Statement coverage:
+
+    | Test Cases                                                                                                                                     | Executable path                                                      |
+    |------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------|
+    | userID = ""                                                                                                                                    | 20 -> 22 -> 23 -> 48                                                 |
+    | userID = "hahahahaha"                                                                                                                          | 20 -> 22 -> 47 -> 48                                                 |
+    | userID = 1809853zi0110099<br> os.path.exists(dir) = False<br> opened = True<br> os.path.exists(img_path)=True<br> unknown_encoding = False<br> | 20 -> 22 -> 25 -> 26 -> 30 -> 34 -> 35 -> 36-42 -> 43 -> 44-45 -> 48 |
+    | userID = 1809853zi0110099<br> os.path.exists(dir) = True<br> opened = False<br>                                                                | 20 -> 22 -> 25 -> 29 -> 30 -> 31 -> 48                               |
+
+    Judgment coverage:
+
+    | Test cases                                                                                                                                    | Executable path                                                      |
+    |-----------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------|
+    | userID = ""                                                                                                                                   | 20 -> 22 -> 23 -> 48                                                 |
+    | userID = "hahahahaha"                                                                                                                         | 20 -> 22 -> 47 -> 48                                                 |
+    | userID = 1809853zi0110099<br> os.path.exists(dir) = False<br> opended = True<br> os.path.exists(img_path)=True<br> unknown_encoding=False<br> | 20 -> 22 -> 25 -> 26 -> 30 -> 34 -> 35 -> 36-42 -> 43 -> 44-45 -> 48 |
+    | userID = 1809853zi0110099<br> os.path.exists(dir) = True<br> opened = False<br>                                                               | 20 -> 22 -> 25 -> 29 -> 30 -> 31 -> 48                               |
+    | userID = 1809853zi0110099<br> os.path.exists(dir) = True<br> opened = True<br> os.path.exists(img_path)=True<br> unknown_encoding = True<br>  | 20 -> 22 -> 25 -> 26 -> 30 -> 34 -> 35 -> 36-42 -> 43 -> 48          |
+    | userID = 1809853zi0110099<br>  os.path.exists(dir) = False<br>  opened = True<br>  os.path.exists(img_path)=False<br>                         | 20 -> 22 -> 25 -> 26 -> 30 -> 34 -> 35 -> 48                         |
+
+  Conditional coverage:
+  Because in every judgement statement, our program only have one condition. Therefore the conditional coverage is same as the judgement coverage.
+
+
+
     Loop Complexity：
 
     The loop complexity is 10.  
@@ -108,34 +133,65 @@ We use **White Box Test** to test 3 different and critical functions in [`UI/uti
 
     Independent Path：
 
-    1. 20 -> 22 -> 25 -> 26 -> 29 -> 30 -> 31 -> 48
-    2. 20 -> 22 -> 25 -> 26 -> 29 -> 30 -> 34 -> 35 -> 36-42 -> 43 -> 44-45 -> 48
-    3. 20 -> 22 -> 25 -> 26 -> 29 -> 30 -> 34 -> 35 -> 36-42 -> 43 -> 48
+    1. 20 -> 22 -> 25 -> 26 -> 30 -> 31 -> 48
+    2. 20 -> 22 -> 25 -> 26 -> 30 -> 34 -> 35 -> 36-42 -> 43 -> 44-45 -> 48
+    3. 20 -> 22 -> 25 -> 26 -> 30 -> 34 -> 35 -> 36-42 -> 43 -> 48
     4. 20 -> 22 -> 25 -> 29 -> 30 -> 31 -> 48
+    5. 20 -> 22 -> 25 -> 29 -> 30 -> 34 -> 35 -> 36-42 -> 43 -> 44-45 -> 48
+    6. 20 -> 22 -> 25 -> 29 -> 30 -> 34 -> 35 -> 36-42 -> 43 -> 48
+    7. 20 -> 22 -> 23 -> 48
+    8. 20 -> 22 -> 47 -> 48
+    9. 20 -> 22 -> 25 -> 26 -> 30 -> 34 -> 35 -> 48
+    10. 20 -> 22 -> 25 -> 29 -> 30 -> 34 -> 35 -> 48
 
-    6. 20 -> 22 -> 25 -> 29 -> 30 -> 34 -> 35 -> 36-42 -> 43 -> 44-45 -> 48
-    7. 20 -> 22 -> 25 -> 29 -> 30 -> 34 -> 35 -> 36-42 -> 43 -> 48
-    9. 20 -> 22 -> 23 -> 48
-    10. 20 -> 22 -> 47 -> 48
-
-    Test Cases:
-
-    |              | input                                                                                                                     | expected output |
-    |--------------|---------------------------------------------------------------------------------------------------------------------------|-----------------|
-    | Test case 1  | userID = 1809853zi0110099<br> os.path.exists(dir) = False<br> opened = False<br>                                                      | Error Exception |
-    | Test case 2  | userID = 1809853zi0110099<br> os.path.exists(dir) = False<br> opened = True<br> os.path.exists(img_path)=True<br> unkown_encoding = False<br> | Error Exception |
-    | Test case 3  | userID = 1809853zi0110099<br> os.path.exists(dir) = False<br> opened = True<br> os.path.exists(img_path)=True<br> unkown_encoding = True<br>  | Success         |
-    | Test case 4  | userID = 1809853zi0110099<br> os.path.exists(dir) = True<br> opened = False<br>                                                       | Error Exception |
-    | Test case 5  | userID = 1809853zi0110099<br> os.path.exists(dir) = True<br> opened = True<br> os.path.exists(img_path)=True<br> unknown_encoding = False<br> | Error Exception |
-    | Test case 6  | userID = 1809853zi0110099<br> os.path.exists(dir) = True<br> opened = True<br> os.path.exists(img_path)=True<br> unknown_encoding = True<br>  | Success!        |
-    | Test case 7  | userID = ""                                                                                                               | Error Exception |
-    | Test case 8 | userID = "hahahahaha"                                                                                                     | Error Exception                |
+  
+  Test Cases:
+    
+  |              | input                                                                                                                     | expected output |
+  |--------------|---------------------------------------------------------------------------------------------------------------------------|-----------------|
+  | Test case 1  | userID = 1809853zi0110099<br> os.path.exists(dir) = False<br> opened = False<br>                                                      | Error Exception |
+  | Test case 2  | userID = 1809853zi0110099<br> os.path.exists(dir) = False<br> opened = True<br> os.path.exists(img_path)=True<br> unkown_encoding = False<br> | Error Exception |
+  | Test case 3  | userID = 1809853zi0110099<br> os.path.exists(dir) = False<br> opened = True<br> os.path.exists(img_path)=True<br> unkown_encoding = True<br>  | Success         |
+  | Test case 4  | userID = 1809853zi0110099<br> os.path.exists(dir) = True<br> opened = False<br>                                                       | Error Exception |
+  | Test case 5  | userID = 1809853zi0110099<br> os.path.exists(dir) = True<br> opened = True<br> os.path.exists(img_path)=True<br> unknown_encoding = False<br> | Error Exception |
+  | Test case 6  | userID = 1809853zi0110099<br> os.path.exists(dir) = True<br> opened = True<br> os.path.exists(img_path)=True<br> unknown_encoding = True<br>  | Success!        |
+  | Test case 7  | userID = ""                                                                                                               | Error Exception |
+  | Test case 8 | userID = "hahahahaha"                                                                                                     | Error Exception                |
+  | Test case 9  | userID = 1809853zi0110099<br> os.path.exists(dir) = False<br> opened = True<br> os.path.exists(img_path)=False<br>   | Error Exception        |
+  | Test case 10  | userID = 1809853zi0110099<br> os.path.exists(dir) = True<br> opened = True<br> os.path.exists(img_path)=False<br>  | Error Exception       |
 
 2. `addUser` func
 
     Control Flow Graph: 
     
     ![](img/add_user.svg)
+
+    Statement coverage:
+
+    | Test cases                                                                                                                                                           | Executable paths                                |
+    |----------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------|
+    | os.path.exists(os.path.join(dir, userImg)) = False                                                                                                                   | 50-54 -> 55 -> 56-57 -> 85                      |
+    | os.path.exists(os.path.join(dir, userImg)) = True userName = "wyy" userID = ""                                                                                       | 50-54 -> 55 -> 61-62 -> 85                      |
+    | os.path.exists(os.path.join(dir, userImg)) = True userName = "cr" userID = "1809853zi0110099" len(sql3_helper.query(cmd = testsql)) == 0                             | 50-54 -> 55 -> 64-69 -> 70 -> 72 -> 73-78 -> 85 |
+    | os.path.exists(os.path.join(dir, userImg)) = True userName = "cr" userID = "1809853zi0110099" len(sql3_helper.query(cmd = testsql)) == 0  database statement = false | 50-54 -> 55 -> 64-69 -> 70 -> 79 -> 80-81 -> 85 |
+    | os.path.exists(os.path.join(dir, userImg)) = True userName = "cr" userID = "1809853zi0110099" len(sql3_helper.query(cmd = testsql)) != 0                             | 50-54 -> 55 -> 64-69 -> 82 -> 83-84 -> 85       |
+    
+    Judgement coverage:  
+    It is the same as the statement coverage.
+
+    Judgement/Conditional coverage:  
+    userName = '' is true T1, else -T1
+    userId = '' is true T2, else -T2
+
+    | Test cases                                                                                                                                                           | Executable path                                 | Cover condition |
+    |----------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------|-----------------|
+    | os.path.exists(os.path.join(dir, userImg)) = False                                                                                                                   | 50-54 -> 55 -> 56-57 -> 85                      | ----------      |
+    | os.path.exists(os.path.join(dir, userImg)) = True userName = "" userID = ""                                                                                          | 50-54 -> 55 -> 61-62 -> 85                      | T1, T2          |
+    | os.path.exists(os.path.join(dir, userImg)) = True userName = "cr" userID = "1809853zi0110099" len(sql3_helper.query(cmd = testsql)) == 0                             | 50-54 -> 55 -> 64-69 -> 70 -> 72 -> 73-78 -> 85 | -T1, -T2        |
+    | os.path.exists(os.path.join(dir, userImg)) = True userName = "cr" userID = "1809853zi0110099" len(sql3_helper.query(cmd = testsql)) == 0  database statement = false | 50-54 -> 55 -> 64-69 -> 70 -> 79 -> 80-81 -> 85 | -T1, -T2        |
+    | os.path.exists(os.path.join(dir, userImg)) = True userName = "cr" userID = "1809853zi0110099" len(sql3_helper.query(cmd = testsql)) != 0                             | 50-54 -> 55 -> 64-69 -> 82 -> 83-84 -> 85       | -T1, -T2        |
+
+
 
     Loop Complexity:
 
@@ -164,42 +220,60 @@ We use **White Box Test** to test 3 different and critical functions in [`UI/uti
     
     ![](img/identification.svg)
 
+    Statement Path:
+
+    | Test cases                                                                                                                                   | Executable path                                                                                                           |
+    |----------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|
+    | self.identificationButton.click = False                                                                                                      | 102 -> 103 -> 153                                                                                                         |
+    | opened = False                                                                                                                               | 102 -> 103 -> 105 -> 106 -> 153                                                                                           |
+    | opened = True<br> os.path.exists(unknown_path) = True<br> self.count = 0<br> success = True<br> int(out[0][0]) = 1<br>                       | 102 -> 103 -> 105 -> 107-108 -> 109 -> 110-111 -> 112 -> 113 -> 116 -> 119 -> 120-127 -> 128 -> 129-130 -> 153            |
+    | opened = True<br> os.path.exists(unknown_path) = True<br> self.count = 0<br> success = False<br>                                             | 102 -> 103 -> 105 -> 107-108 -> 109 -> 110-111 -> 112 -> 115 -> 116 -> 119 -> 149-152 -> 153                              |
+    | opened = True<br> os.path.exists(unknown_path) = False<br> success = True<br> int(out[0][0]) = 0<br> time_recorders.is_class_name = True<br> | 102 -> 103 -> 105 -> 107-108 -> 118 -> 119 -> 120-127 -> 128 -> 132-134 -> 146-147 -> 153                                 |
+    | opened = True<br> os.path.exists(unknown_path) = True<br> self.count = 6<br> success = True<br> int(out[0][0]) = 1<br>                       | 102 -> 103 -> 105 -> 107-108 -> 109 -> 110-111 -> 112 -> 115 -> 116 -> 119 -> 120-127 -> 128 -> 132-134 -> 136-145 -> 153 |
+
+    Judgement coverage:  
+    The same as above.
+
+    Condition coverage:  
+    Because all the conditional statements we have only contain 1 condition. Therefore, it is same as the judgement coverage.
+
+
     Loop Complexity:
 
     The loop complexity is 14.
 
-1. 102 -> 103 -> 153
-2. 102 -> 103 -> 105 -> 106 -> 153
-3. 102 -> 103 -> 105 -> 107-108 -> 109 -> 110-111 -> 112 -> 113 -> 116 -> 119 -> 120-127 -> 128 -> 129-130 -> 153
-4. 102 -> 103 -> 105 -> 107-108 -> 109 -> 110-111 -> 112 -> 113 -> 116 -> 119 -> 120-127 -> 128 -> 132-134 -> 146-147 -> 153
-5. 102 -> 103 -> 105 -> 107-108 -> 109 -> 110-111 -> 112 -> 113 -> 116 -> 119 -> 120-127 -> 128 -> 132-134 -> 136-145 -> 153
-6. 102 -> 103 -> 105 -> 107-108 -> 109 -> 110-111 -> 112 -> 115 -> 116 -> 119 -> 149-152 -> 153
-7. 102 -> 103 -> 105 -> 107-108 -> 109 -> 110-111 -> 112 -> 115 -> 116 -> 119 -> 120-127 -> 128 -> 129-130 -> 153
-8. 102 -> 103 -> 105 -> 107-108 -> 109 -> 110-111 -> 112 -> 115 -> 116 -> 119 -> 120-127 -> 128 -> 132-134 -> 146-147 -> 153
-9. 102 -> 103 -> 105 -> 107-108 -> 109 -> 110-111 -> 112 -> 115 -> 116 -> 119 -> 120-127 -> 128 -> 132-134 -> 136-145 -> 153
-10. 102 -> 103 -> 105 -> 107-108 -> 109 -> 110-111 -> 112 -> 115 -> 116 -> 119 -> 149-152 -> 153
-11. 102 -> 103 -> 105 -> 107-108 -> 118 -> 119 -> 120-127 -> 128 -> 129-130 -> 153
-12. 102 -> 103 -> 105 -> 107-108 -> 118 -> 119 -> 120-127 -> 128 -> 132-134 -> 146-147 -> 153
-13. 102 -> 103 -> 105 -> 107-108 -> 118 -> 119 -> 120-127 -> 128 -> 132-134 -> 136-145 -> 153
-14. 102 -> 103 -> 105 -> 107-108 -> 118 -> 119 -> 149-152 -> 153
+   1. 102 -> 103 -> 153
+   2. 102 -> 103 -> 105 -> 106 -> 153
+   3. 102 -> 103 -> 105 -> 107-108 -> 109 -> 110-111 -> 112 -> 113 -> 116 -> 119 -> 120-127 -> 128 -> 129-130 -> 153
+   4. 102 -> 103 -> 105 -> 107-108 -> 109 -> 110-111 -> 112 -> 113 -> 116 -> 119 -> 120-127 -> 128 -> 132-134 -> 146-147 -> 153
+   5. 102 -> 103 -> 105 -> 107-108 -> 109 -> 110-111 -> 112 -> 113 -> 116 -> 119 -> 120-127 -> 128 -> 132-134 -> 136-145 -> 153
+   6. 102 -> 103 -> 105 -> 107-108 -> 109 -> 110-111 -> 112 -> 115 -> 116 -> 119 -> 149-152 -> 153
+   7.  102 -> 103 -> 105 -> 107-108 -> 109 -> 110-111 -> 112 -> 115 -> 116 -> 119 -> 120-127 -> 128 -> 129-130 -> 153
+   8.  102 -> 103 -> 105 -> 107-108 -> 109 -> 110-111 -> 112 -> 115 -> 116 -> 119 -> 120-127 -> 128 -> 132-134 -> 146-147 -> 153
+   9.  102 -> 103 -> 105 -> 107-108 -> 109 -> 110-111 -> 112 -> 115 -> 116 -> 119 -> 120-127 -> 128 -> 132-134 -> 136-145 -> 153
+   10. 102 -> 103 -> 105 -> 107-108 -> 109 -> 110-111 -> 112 -> 115 -> 116 -> 119 -> 149-152 -> 153
+   11. 102 -> 103 -> 105 -> 107-108 -> 118 -> 119 -> 120-127 -> 128 -> 129-130 -> 153
+   12. 102 -> 103 -> 105 -> 107-108 -> 118 -> 119 -> 120-127 -> 128 -> 132-134 -> 146-147 -> 153
+   13. 102 -> 103 -> 105 -> 107-108 -> 118 -> 119 -> 120-127 -> 128 -> 132-134 -> 136-145 -> 153
+   14. 102 -> 103 -> 105 -> 107-108 -> 118 -> 119 -> 149-152 -> 153
 
 
-|              | input                                                                                                                                                               | expected input   |
-|--------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------|
-| Test case 1  | self.identificationButton.click = False                                                                                                                             | Error Exception! |
-| Test case 2  | opened = False                                                                                                                                                      | Error Exception! |
-| Test case 3  | opened = True <br> os.path.exists(unknown_path) = True <br> self.count = 0 <br> success = True <br> int(out[0][0]) = 1 <br>                                         | Error Exception! |
-| Test case 4  | opened = True <br> os.path.exists(unknown_path) = True <br> self.count = 0 <br> success = True <br> int(out[0][0]) = 0 <br> time_recorder.is_class_time = True<br>  | Success!         |
-| Test case 5  | opened = True <br> os.path.exists(unknown_path) = True <br> self.count = 0 <br> success = True <br> int(out[0][0]) = 0 <br> time_recorder.is_class_time = False<br> | Error Exception! |
-| Test case 6  | opened = True <br> os.path.exists(unknown_path) = True <br> self.count = 0 <br> success = False <br>                                                                | Error Exception! |
-| Test case 7  | opened = True <br> os.path.exists(unknown_path) = True <br> self.count = 6 <br> success = True <br> int(out[0][0]) = 0 <br> time_recorder.is_class_time = True<br>  | Success!         |
-| Test case 8  | opened = True <br> os.path.exists(unknown_path) = True <br> self.count = 6 <br> success = True <br> int(out[0][0]) = 0 <br> time_recorder.is_class_time = False<br> | Error Exception! |
-| Test case 9  | opened = True <br> os.path.exists(unknown_path) = True <br> self.count = 6 <br> success = True <br> int(out[0][0]) = 1 <br>                                         | Error Exception! |
-| Test case 10 | opened = True <br> os.path.exists(unknown_path) = True <br> self.count = 6 <br> success = False <br>                                                                | Error Exception! |
-| Test case 11 | opened = True <br> os.path.exists(unknown_path) = Flase <br> success = True <br> int(out[0][0]) = 1 <br>                                                            | Error Exception! |
-| Test case 12 | opened = True <br> os.path.exists(unknown_path) = False <br> success = True <br> int(out[0][0]) = 0 <br> time_recorders.is_class_name = True<br>                    | Success!         |
-| Test case 13 | opened = True <br> os.path.exists(unknown_path) = False <br> success = True <br> int(out[0][0]) = 0 <br> time_recorders.is_class_name = False<br>                   | Error Exception! |
-| Test case 14 | opened = True <br> os.path.exists(unknown_path) = False <br> success = False <br>                                                                                   | Error Exception! |
+  |              | input                                                                                                                                                               | expected input   |
+  |--------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------|
+  | Test case 1  | self.identificationButton.click = False                                                                                                                             | Error Exception! |
+  | Test case 2  | opened = False                                                                                                                                                      | Error Exception! |
+  | Test case 3  | opened = True <br> os.path.exists(unknown_path) = True <br> self.count = 0 <br> success = True <br> int(out[0][0]) = 1 <br>                                         | Error Exception! |
+  | Test case 4  | opened = True <br> os.path.exists(unknown_path) = True <br> self.count = 0 <br> success = True <br> int(out[0][0]) = 0 <br> time_recorder.is_class_time = True<br>  | Success!         |
+  | Test case 5  | opened = True <br> os.path.exists(unknown_path) = True <br> self.count = 0 <br> success = True <br> int(out[0][0]) = 0 <br> time_recorder.is_class_time = False<br> | Error Exception! |
+  | Test case 6  | opened = True <br> os.path.exists(unknown_path) = True <br> self.count = 0 <br> success = False <br>                                                                | Error Exception! |
+  | Test case 7  | opened = True <br> os.path.exists(unknown_path) = True <br> self.count = 6 <br> success = True <br> int(out[0][0]) = 0 <br> time_recorder.is_class_time = True<br>  | Success!         |
+  | Test case 8  | opened = True <br> os.path.exists(unknown_path) = True <br> self.count = 6 <br> success = True <br> int(out[0][0]) = 0 <br> time_recorder.is_class_time = False<br> | Error Exception! |
+  | Test case 9  | opened = True <br> os.path.exists(unknown_path) = True <br> self.count = 6 <br> success = True <br> int(out[0][0]) = 1 <br>                                         | Error Exception! |
+  | Test case 10 | opened = True <br> os.path.exists(unknown_path) = True <br> self.count = 6 <br> success = False <br>                                                                | Error Exception! |
+  | Test case 11 | opened = True <br> os.path.exists(unknown_path) = Flase <br> success = True <br> int(out[0][0]) = 1 <br>                                                            | Error Exception! |
+  | Test case 12 | opened = True <br> os.path.exists(unknown_path) = False <br> success = True <br> int(out[0][0]) = 0 <br> time_recorders.is_class_name = True<br>                    | Success!         |
+  | Test case 13 | opened = True <br> os.path.exists(unknown_path) = False <br> success = True <br> int(out[0][0]) = 0 <br> time_recorders.is_class_name = False<br>                   | Error Exception! |
+  | Test case 14 | opened = True <br> os.path.exists(unknown_path) = False <br> success = False <br>                                                                                   | Error Exception! |
 
 ## Unit Testing
 Actually, it is necessary to create a test suite a load the test cases in previous testing work. 
