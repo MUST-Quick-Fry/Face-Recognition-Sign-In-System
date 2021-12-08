@@ -39,7 +39,7 @@ Decision table:
 | C3:take photo state  | yes | yes | yes | yes | yes | yes | yes | yes | yes | no  |
 | C4:press button      | yes | yes | yes | yes | yes | yes | yes | yes | yes | yes |
 | A1:Success           | ✔   |     |     |     |     |     |     |     |     |     |
-| A2:Error exception   |     | ✔   | ✔   | ✔   | ✔   | ✔   | ✔   | ✔   | ✔   |     |  
+| A2:Error exception   |     | ✔   | ✔   | ✔   | ✔   | ✔   | ✔   | ✔   | ✔   | ✔   |  
 
 Test cases:
 | sample number | sample operations                                                      | sample input            | sample output         |
