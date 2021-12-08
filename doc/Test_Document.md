@@ -13,7 +13,8 @@ Equivalence class:
 3. M3 = {input sid null}
 4. D1 = {input sname valid}
 5. D2 = {input sname invalid}
-6. D3 = {input sname null}
+6. D3 = {input sname null}  
+
 Condition Stub:  
 
 1. C1: input sid in {M1,M2,M3}
