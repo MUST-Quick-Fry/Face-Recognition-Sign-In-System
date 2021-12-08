@@ -45,10 +45,10 @@ Test cases:
 | sample number | sample operations                                                      | sample input            | sample output         |
 |---------------|------------------------------------------------------------------------|-------------------------|-----------------------|
 | 001           | input valid sid <br /> input valid sname<br>   take photo<br>   press button   | 1809853zi0110099<br>   cr   | Registration succeed! |
-| 002           | input valid sid<br>   input invalid sname<br>   take photo<br>   press button      | 1809853zi0110098<br>   123  | Error exception!      |
+| 002           | input valid sid<br>   input invalid sname<br>   take photo<br>   press button      | 1809853zi0110098<br>   Polyentolyekmongtainh  | Error exception!      |
 | 003           | input valid sid<br>   input null sname<br>   take photo<br>   press button         | 1809853ji0110097<br>   ""   | Error exception!      |
 | 004           | input invalid sid<br>   input valid sname<br>   take photo<br>   press button      | 1809853@iohqwer!<br>   cyx  | Error exception!      |
-| 005           | input invalid sid<br>   input invalid sname<br>   take photo<br>   press button    | 1809!@#$%^&*()<br> hpl  | Error exception!      |
+| 005           | input invalid sid<br>   input invalid sname<br>   take photo<br>   press button    | 1809!@#$%^&*()<br> a  | Error exception!      |
 | 006           | input invalid sid<br>   input null sname<br>   take photo<br>   press button       | 1809😂😂😂😂 <br>  ""          | Error exception!      |
 | 007           | input null sid<br>   input valid sname<br>   take photo<br>   press button         | ""<br>wyy                | Error exception!      |
 | 008           | input null sid<br>   input invalid sname<br>   take photo<br>   press button       | ""<br>(^-^)(^-^)(^-^)    | Error exception!      |
