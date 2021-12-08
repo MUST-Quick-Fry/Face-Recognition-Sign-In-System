@@ -47,10 +47,10 @@ Test cases:
 | 001           | input valid sid <br /> input valid sname<br>   take photo<br>   press button   | 1809853zi0110099<br>   cr   | Registration succeed! |
 | 002           | input valid sid<br>   input invalid sname<br>   take photo<br>   press button      | 1809853zi0110098<br>   Polyentolyekmongtainh  | Error exception!      |
 | 003           | input valid sid<br>   input null sname<br>   take photo<br>   press button         | 1809853ji0110097<br>   ""   | Error exception!      |
-| 004           | input invalid sid<br>   input valid sname<br>   take photo<br>   press button      | 1809853@iohqwer!<br>   cyx  | Error exception!      |
-| 005           | input invalid sid<br>   input invalid sname<br>   take photo<br>   press button    | 1809!@#$%^&*()<br> a  | Error exception!      |
+| 004           | input invalid sid<br>   input valid sname<br>   take photo<br>   press button      | 1809853zi011009<br>   Romanadveratrelunder  | Error exception!      |
+| 005           | input invalid sid<br>   input invalid sname<br>   take photo<br>   press button    | 1809853zi01100901<br> a  | Error exception!      |
 | 006           | input invalid sid<br>   input null sname<br>   take photo<br>   press button       | 1809😂😂😂😂 <br>  ""          | Error exception!      |
-| 007           | input null sid<br>   input valid sname<br>   take photo<br>   press button         | ""<br>wyy                | Error exception!      |
+| 007           | input null sid<br>   input valid sname<br>   take photo<br>   press button         | ""<br>WangYuYang                | Error exception!      |
 | 008           | input null sid<br>   input invalid sname<br>   take photo<br>   press button       | ""<br>(^-^)(^-^)(^-^)    | Error exception!      |
 | 009           | input null sid<br>   input null sname<br>   take photo<br>   press button          | ""<br>""                 | Error exception!      |
 | 010           | input null/(in)valid sid<br>   input null/(in)valid sname<br>   press button   | 1809853zi0110099<br>   cr   | Error exception       |   
