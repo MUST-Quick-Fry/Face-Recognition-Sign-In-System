@@ -101,7 +101,6 @@ class TestUIRegistration(unittest.TestCase):
     
     def tearDown(self):
         self.window.close()
-        self.registerWindow.close()
         self.app.quit()
 
 
