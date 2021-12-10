@@ -154,7 +154,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def execDrawPlot(self):
 
         # pie plot about attendance & absence rate
-        sqlcmd = "SELECT COUNT(*) FROM tasks_signin WHERE Date(time) = '" + str(today) + "'"
+        sqlcmd = "SELECT COUNT(*) FROM tasks_signin WHERE Date(time) = '" + str(today) + "' AND cid_id = 1"
         re = sql3_helper.query(sqlcmd)
 
         attend = re[0][0]
@@ -172,7 +172,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 explode=(0.25, 0),
                 autopct='%.2f%%',
                 )
-        plt.title("Attendance & Absence Rate", pad=30)
+        plt.title("CS001 Attendance & Absence Rate", pad=30)
         plt.show()
 
         # bar plot about time record
@@ -208,7 +208,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
             # draw plot
             plt.figure(figsize=(fig_width, fig_height))
-            plt.title("Sign-in Record on " + str(today) + "          Total students: " + str(len(num)))
+            plt.title("CS001 Sign-in Record on " + str(today) + "          Total students: " + str(len(num)))
             plt.xlabel("Sign-in Time")
             plt.ylabel("Number of Students")
             plt.ylim(0, 1.2 * data_max)

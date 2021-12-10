@@ -27,8 +27,8 @@ def go_to_iframe(id_num):
 
 
 def reissue():
-    # web.find_element(By.XPATH, '//*[@id="main"]/section/aside/ul/div/li[2]/div').click()
-    # time.sleep(2)
+    web.find_element(By.XPATH, '//*[@id="main"]/section/aside/ul/div/li[2]/div').click()
+    time.sleep(2)
     retroa_but = web.find_element(By.XPATH, '//*[@id="main"]/section/aside/ul/div/li[2]/ul/div/li[2]')
     assert retroa_but is not None
     retroa_but.click()
@@ -45,19 +45,15 @@ def reissue():
     '''test the function of add sign in'''
     for i in range(1, num_sid):
         for j in range(1, num_cid):
-            if i == 1 and j == 2:
-                continue
-            elif i != 1 and j == num_cid - 1:
-                break
             sel_sid = Select(web.find_element(By.XPATH, '//*[@id="id_sid"]'))
             sel_sid.select_by_index(i)
             sel_cid = Select(web.find_element(By.XPATH, '//*[@id="id_cid"]'))
             sel_cid.select_by_index(j)
-            time.sleep(2)
+            # time.sleep(2)
             save_but = web.find_element(By.XPATH, '//*[@id="signin_form"]/div/div/button[2]')
             assert save_but is not None
             save_but.click()
-            time.sleep(2)
+            # time.sleep(2)
 
     back_but = web.find_element(By.XPATH, '//*[@id="signin_form"]/div/div/button[1]')
     assert back_but is not None
@@ -208,20 +204,42 @@ def add_obj(id_num, *args):
         save_btn.click()
         web.implicitly_wait(10)
         web.get_screenshot_as_file('course_add_suc.png')
+    elif id_num == '1009':
+        sel_sid = Select(web.find_element(By.XPATH, '//*[@id="id_sid"]'))
+        assert sel_sid is not None
+        sel_sid.select_by_index(5)
+        sel_cid = Select(web.find_element(By.XPATH, '//*[@id="id_cid"]'))
+        assert sel_cid is not None
+        cid_len = len(sel_cid.options)
+        for i in range(1, cid_len):
+            sel_sid = Select(web.find_element(By.XPATH, '//*[@id="id_sid"]'))
+            assert sel_sid is not None
+            sel_sid.select_by_index(5)
+            sel_cid = Select(web.find_element(By.XPATH, '//*[@id="id_cid"]'))
+            sel_cid.select_by_index(i)
+            save_button = web.find_element(By.XPATH, '//*[@id="takeclass_form"]/div/div/button[2]')
+            assert save_button is not None
+            save_button.click()
+        back_button = web.find_element(By.XPATH, '//*[@id="takeclass_form"]/div/div/button[1]')
+        assert back_button is not None
+        back_button.click()
+
 
 
 if __name__ == '__main__':
     web = Chrome()
     web.get("http://127.0.0.1:8000/")
     log_in()
+    dic = {'1006': 'teacher', '1007': 'student', '1008': 'course_list', '1009': 'take_course'}
+    add_obj('1009')
     # sign_in_records('bef')
-    # reissue()
+    web.switch_to.parent_frame()
+    reissue()
     # change_pwd()
     # sorted_by_students()
     # search_id_name('hpl', 'name')
     # web.refresh()
     # time.sleep(2)
     # search_id_name('xxx', 'id')
-    dic = {'1006': 'teacher', '1007': 'student', '1008': 'course_list'}
     # add_obj('1006', 'wyy', '123456')
-    add_obj('1008', 'CN102', '2', '14:30:00', '16:20:00')
+    # add_obj('1008', 'CN102', '2', '14:30:00', '16:20:00')
