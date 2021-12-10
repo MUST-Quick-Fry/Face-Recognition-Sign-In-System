@@ -132,7 +132,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
                 else:
                     # print(time_recorder.get_time_record())
-                    if time_recorder.is_class_time("9:00:00", "13:50:00"):
+                    if time_recorder.is_class_time("9:00:00", "23:50:00"):
 
                         sqlcmd = "SELECT COUNT(*) FROM tasks_signin"
                         total = sql3_helper.query(sqlcmd)
