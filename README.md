@@ -2,11 +2,11 @@
 ## Introduction
 Face Recognition Sign-In System for course management developed by python and corresponding technologies.
 ### Preface
-Our team expects to be a pioneer to contribute, and we wish to develop a signin
+Our team expects to be a pioneer to contribute, and we wish to develop a sign-in
 system via face-recognition, making our university more intelligent and convenient. 
 ### Features and Functions
 
-#### Two components features
+#### Features of Two Components 
 - **Client-side** : registration part, identification part, and record display part. 
 - **Website** : records display part and retroactive sign-in part. 
 
@@ -66,7 +66,7 @@ system via face-recognition, making our university more intelligent and convenie
 
 ## License
 The code is licensed under MIT License. For more details, read the [LICENSE](https://github.com/MUST-Quick-Fry/Face-Recognition-Sign-In-System/blob/master/LICENSE) file.
-## Acknowleagements/Contributors
+## Acknowledgements/Contributors
 Sincerely thank our team for the great support, understandings and involvements. 
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
