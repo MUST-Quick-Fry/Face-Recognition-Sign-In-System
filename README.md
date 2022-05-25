@@ -9,6 +9,7 @@ system via face-recognition, making our university more intelligent and convenie
 #### Features of Two Components 
 - **Client-side** : registration part, identification part, and record display part. 
 - **Website** : records display part and retroactive sign-in part. 
+<!-- website -->
 
 #### Fundamental Functions 
 1. Registration 
@@ -30,7 +31,7 @@ system via face-recognition, making our university more intelligent and convenie
 
 <!-- 
 ### Project Report 
-...
+TO BE UPDATE...
  -->
  
 ## Download/Install
@@ -40,6 +41,7 @@ system via face-recognition, making our university more intelligent and convenie
 
 ### Involved Installation 
 > Please firstly install all dependencies via command `pip install -r requirements.txt`
+
 **Main Dependencies**
 - Django
 - click
@@ -74,7 +76,7 @@ Sincerely thank our team for the great support, understandings and involvements.
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="https://github.com/Tim-eyes"><img src="https://avatars.githubusercontent.com/u/53691717?s=40&v=4" width="100px;" alt=""/><br /><sub><b>Tim He</b></sub></a><br /><a href="#translation-s8321414" title="Translation">🌍</a></td>
+    <td align="center"><a href="https://github.com/Tim-eyes"><img src="https://avatars.githubusercontent.com/u/53691717?&v=4" width="100px;" alt=""/><br /><sub><b>Tim He</b></sub></a><br /><a href="#translation-s8321414" title="Translation">🌍</a></td>
     <td align="center"><a href="https://github.com/CairneRain"><img src="https://avatars.githubusercontent.com/u/45813709?v=4" width="100px;" alt=""/><br /><sub><b>Cairne Rain</b></sub></a><br /><a href="#design-mzemlickis" title="Design">🎨</a></td>
     <td align="center"><a href="https://github.com/KennardWang"><img src="https://avatars.githubusercontent.com/u/57723061?v=4" width="100px;" alt=""/><br /><sub><b>Kennard Wang</b></sub></a><br /><a href="#platform-Sandural" title="Packaging/porting to new platform">📦</a></td>
     <td align="center"><a href="https://github.com/goodkillerchen"><img src="https://avatars.githubusercontent.com/u/58941606?v=4" width="100px;" alt=""/><br /><sub><b>Goodkiller Chen</b></sub></a><br /><a href="https://github.com/CopyTranslator/CopyTranslator/commits?author=Andy-AO" title="Code">💻</a></td>
